@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from core.models import *
+
+admin.site.register(Client)
+admin.site.register(Address)
+admin.site.register(Ancillary)
+admin.site.register(Animal)
+admin.site.register(CicloEstral)
+admin.site.register(Haras)

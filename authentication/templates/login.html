@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'authentication_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <h3>Bem Vindo ao EquiRepro</h3>
+{#            <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.#}
+{#                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->#}
+{#            </p>#}
+            <p>Entre no Sistema. Para vê-lo em ação.</p>
+            <form class="m-t" role="form" action="index.html">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Username" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Entrar</button>
+
+                <a href="#"><small>Esqueceu sua senha?</small></a>
+                <p class="text-muted text-center"><small>Ainda não possui uma conta?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="{% url 'register' %}">Registre-se</a>
+            </form>
+
+{% endblock %}
