@@ -1,7 +1,9 @@
 from django.urls import path
 
-from core.views import Index
+from core.views import Agenda, Animais, NovoAnimal
 
 urlpatterns = [
-    path('', Index.as_view(), name="index"),
+    path('agenda/', Agenda.as_view(), name="agenda"),
+    path('animal/list/', Animais.as_view(), name="animal_list"),
+    path('animal/novo/', NovoAnimal.as_view(), name="animal_novo"),
 ]

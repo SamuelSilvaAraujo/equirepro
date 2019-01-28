@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Novo Animal{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">Salvar</button>
+
+    </form>
+
+{% endblock %}

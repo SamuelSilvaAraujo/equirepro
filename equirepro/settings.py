@@ -25,7 +25,7 @@ SECRET_KEY = '9+r8pfq_0!*$8^yl=-5+uqn*#2sh^tov$lg51=-a5ym3tidg3@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -129,3 +129,8 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'agenda'
+LOGOUT_REDIRECT_URL = 'login'

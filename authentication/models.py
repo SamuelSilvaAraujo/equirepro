@@ -32,7 +32,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    email = models.EmailField(unique=True)
+    email = models.EmailField("E-mail", unique=True)
     crmv = models.CharField("CRMV", max_length=14, unique=True)
     name = models.CharField("nome",max_length=40)
 
