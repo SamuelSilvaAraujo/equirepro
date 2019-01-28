@@ -10,14 +10,14 @@
     <form class="m-t" role="form" method="post" action="">
         {% csrf_token %}
 
-        {{ form.as_p }}
 
-{#        <div class="form-group">#}
-{#            <input type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.email }}" class="form-control" placeholder="E-mail">#}
-{#        </div>#}
-{#        <div class="form-group">#}
-{#            <input type="password" id="{{ form.password.password }}" name="{{ form.password.password }}" class="form-control" placeholder="Senha">#}
-{#        </div>#}
+        {% for field in form  %}
+            <div class="form-group">
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+
         <button type="submit" class="btn btn-primary block full-width m-b">Entrar</button>
 
         <a href="#"><small>Esqueceu sua senha?</small></a>
