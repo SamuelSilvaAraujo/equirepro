@@ -18,9 +18,9 @@ class Animais(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(Animais, self).get_context_data(*args, **kwargs)
-        context["garanhoes"] = self.request.user.animal_set.filter(tipo="GANHARAO")
-        context["doadoras"] = self.request.user.animal_set.filter(tipo="DOADORA")
-        context["receptoras"] = self.request.user.animal_set.filter(tipo="RECEPTORA")
+        context["garanhoes"] = self.request.user.animal_set.filter(type="GANHARAO")
+        context["doadoras"] = self.request.user.animal_set.filter(type="DOADORA")
+        context["receptoras"] = self.request.user.animal_set.filter(type="RECEPTORA")
         return context
 
 class NovoAnimal(LoginRequiredMixin, CreateView):

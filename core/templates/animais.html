@@ -4,17 +4,21 @@
 
 {% block content %}
 
-    <div class="wrapper wrapper-content  animated fadeInRight">
-        <div class="row">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-8">
+            <h2>Animais</h2>
+        </div>
+        <div class="col-lg-4">
+            <div class="title-action">
+                <a href="{% url 'animal_novo' %}" class="btn btn-primary"><i class="fa fa-print"></i>+ Novo Animal</a>
+            </div>
+        </div>
+    </div>
 
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
             <div class="col-sm-12">
                 <div class="ibox">
-                <div class="ibox-title">
-                            <h5>Animais</h5>
-                            <div class="ibox-tools">
-                                <a href="{% url 'animal_novo' %}" class="btn btn-primary btn-xs"> + Novo Animal</a>
-                            </div>
-                        </div>
                     <div class="ibox-content">
                         <div class="input-group">
                             <input type="text" placeholder="Pesquise um animal" class="input form-control">
@@ -72,7 +76,7 @@
                                                 {% for receptora in receptoras %}
                                                     <tr>
                                                         <td><a data-toggle="tab" href="" class="client-link">{{ receptora.name }}</a></td>
-                                                        <td>{{ doadora.allocation }}</td>
+                                                        <td>{{ receptora.allocation }}</td>
                                                         <td class="client-status"><span class="label label-primary">Active</span></td>
                                                     </tr>
                                                 {% endfor %}
@@ -87,9 +91,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
-
 {% endblock %}
