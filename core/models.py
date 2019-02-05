@@ -42,9 +42,9 @@ class Ancillary(models.Model):
 class Animal(models.Model):
 
     TYPE_CHOICES = (
-        ('GANHARAO', 'Ganharão'),
-        ('DOADORA', 'Égua Doadora'),
-        ('RECEPTORA', 'Égua Receptora')
+        ('garanhao', 'Garanhão'),
+        ('doadora', 'Égua Doadora'),
+        ('receptora', 'Égua Receptora')
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -52,7 +52,7 @@ class Animal(models.Model):
     proprietary = models.ForeignKey(Client, verbose_name="Proprietário", on_delete=models.CASCADE)
     allocation = models.ForeignKey(Haras, verbose_name="Locação", on_delete=models.CASCADE)
     ancillary = models.ForeignKey(Ancillary, verbose_name="Auxiliar", on_delete=models.CASCADE)
-    type = models.CharField("Tipo", choices=TYPE_CHOICES, max_length=25, default="GANHARAO")
+    type = models.CharField("Tipo", choices=TYPE_CHOICES, max_length=25)
 
     def __str__(self):
         return "{}-{}".format(self.name, self.type)

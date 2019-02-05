@@ -4,7 +4,9 @@
 {% block title %}Novo Animal{% endblock %}
 
 {% block header %}
+
     <link href="{% static 'css/plugins/select2/select2.min.css' %}" rel="stylesheet">
+
 {% endblock %}
 
 {% block content %}
@@ -33,7 +35,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
-                                    <a href="{% url 'animal_list' %}" class="btn btn-white">Cancelar</a>
+                                    <a href="{% url type_url %}" class="btn btn-white">Cancelar</a>
                                     <button class="btn btn-primary" type="submit">Salvar</button>
                                 </div>
                             </div>
@@ -50,5 +52,11 @@
 {% block script %}
 
     <script src="{% static 'js/plugins/select2/select2.full.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $(".select").select2();
+        });
+    </script>
 
 {% endblock %}

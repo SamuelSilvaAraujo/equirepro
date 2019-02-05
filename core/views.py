@@ -17,28 +17,53 @@ class Agenda(LoginRequiredMixin, TemplateView):
         context["agenda_page"] = "active"
         return context
 
-class Animais(LoginRequiredMixin, ListView):
+class Garanhoes(LoginRequiredMixin, ListView):
     model = Animal
-    template_name = 'animais.html'
+    template_name = 'garanhoes.html'
+    queryset = Animal.objects.filter(type='garanhao')
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(Animais, self).get_context_data(*args, **kwargs)
-        context["garanhoes"] = self.request.user.animal_set.filter(type="GANHARAO")
-        context["doadoras"] = self.request.user.animal_set.filter(type="DOADORA")
-        context["receptoras"] = self.request.user.animal_set.filter(type="RECEPTORA")
-        context["animal_page"] = "active"
+    def get_context_data(self, **kwargs):
+        context = super(Garanhoes, self).get_context_data(**kwargs)
+        context["garanhoes_page"] = "active"
         return context
 
-class NovoAnimal(LoginRequiredMixin, CreateView):
-    model = Animais
-    template_name = 'novo_animal.html'
+class Doadoras(LoginRequiredMixin, ListView):
+    model = Animal
+    template_name = 'doadoras.html'
+    queryset = Animal.objects.filter(type='doadora')
+
+    def get_context_data(self, **kwargs):
+        context = super(Doadoras, self).get_context_data(**kwargs)
+        context["doadoras_page"] = "active"
+        return context
+
+class Receptoras(LoginRequiredMixin, ListView):
+    model = Animal
+    template_name = 'receptoras.html'
+    queryset = Animal.objects.filter(type='receptora')
+
+    def get_context_data(self, **kwargs):
+        context = super(Receptoras, self).get_context_data(**kwargs)
+        context["receptoras_page"] = "active"
+        return context
+
+class NewAnimal(LoginRequiredMixin, CreateView):
+    model = Animal
+    template_name = 'new_animal.html'
     form_class = AnimalForm
+
+    def get_context_data(self, **kwargs):
+        context = super(NewAnimal, self).get_context_data(**kwargs)
+        context["type_url"] = "{}_list".format(self.kwargs['type'])
+        return context
 
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = self.request.user
+        type = self.kwargs['type']
+        obj.type = type
         obj.save()
-        return HttpResponseRedirect(reverse_lazy('animal_list'))
+        return HttpResponseRedirect(reverse_lazy("{}_list".format(type)))
 
 class Clientes(LoginRequiredMixin, ListView):
     model = Client
