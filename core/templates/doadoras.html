@@ -11,56 +11,79 @@
 
 {% block content %}
 
-    <div class="row">
+    <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Eguas Doadoras</h5>
+            <h2>Doadoras</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <p>Animais</p>
+                </li>
+                <li class="active">
+                    <strong>Doadoras</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
 
-                    <div class="ibox-tools">
-                        <a type="button" class="btn-white btn btn-xs" href="{% url 'new_animal' 'doadora' %}">Novo</a>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Doadoras</h5>
+                        <div class="ibox-tools">
+                            <a href="{% url 'new_animal' 'doadora' %}" class="btn btn-primary btn-xs">+ Nova Doadora</a>
+                        </div>
                     </div>
-                </div>
-                <div class="ibox-content">
 
-                    <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Busca">
+                    <div class="ibox-content">
 
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
-                        <thead>
-                        <tr>
+                        <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Busca">
 
-                            <th data-toggle="true">Nome</th>
-                            <th>Proprietário</th>
-                            <th>Locação</th>
-                            <th>Auxiliar</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        {% for doadora in object_list %}
-
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
+                            <thead>
                             <tr>
-                                <td>{{ doadora.name }}</td>
-                                <td>{{ doadora.proprietary }}</td>
-                                <td>{{ doadora.allocation }}</td>
-                                <td>{{ doadora.ancillary }}</td>
+
+                                <th data-toggle="true">Nome</th>
+                                <th>Proprietário</th>
+                                <th>Locação</th>
+                                <th>Auxiliar</th>
                             </tr>
+                            </thead>
+                            <tbody>
 
-                        {% endfor %}
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="5">
-                                <ul class="pagination pull-right"></ul>
-                            </td>
-                        </tr>
-                        </tfoot>
-                    </table>
+                            {% for doadora in object_list %}
 
+                                <tr>
+                                    <td>{{ doadora.name }}</td>
+                                    <td>{{ doadora.proprietary }}</td>
+                                    <td>{{ doadora.allocation }}</td>
+                                    <td>{{ doadora.ancillary }}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <button class="btn-white btn btn-xs">Editar</button>
+                                            <button class="btn btn-xs btn-danger">Excluir</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 {% endblock %}
 

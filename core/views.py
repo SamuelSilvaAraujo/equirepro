@@ -25,6 +25,7 @@ class Garanhoes(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(Garanhoes, self).get_context_data(**kwargs)
         context["garanhoes_page"] = "active"
+        context["animais_page"] = "active"
         return context
 
 class Doadoras(LoginRequiredMixin, ListView):
@@ -35,6 +36,7 @@ class Doadoras(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(Doadoras, self).get_context_data(**kwargs)
         context["doadoras_page"] = "active"
+        context["animais_page"] = "active"
         return context
 
 class Receptoras(LoginRequiredMixin, ListView):
@@ -45,6 +47,7 @@ class Receptoras(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(Receptoras, self).get_context_data(**kwargs)
         context["receptoras_page"] = "active"
+        context["animais_page"] = "active"
         return context
 
 class NewAnimal(LoginRequiredMixin, CreateView):

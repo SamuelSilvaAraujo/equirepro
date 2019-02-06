@@ -1,9 +1,73 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}Clientes{% endblock %}
 
 {% block content %}
 
-    <h1>Clientes</h1>
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h2>Clientes</h2>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Clientes</h5>
+                        <div class="ibox-tools">
+                            <a href="#" class="btn btn-primary btn-xs">+ Novo Cliente</a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+
+                        <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Busca">
+
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
+                            <thead>
+                            <tr>
+
+                                <th data-toggle="true">Nome</th>
+                                <th>E-mail</th>
+                                <th>Telefone</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for client in object_list %}
+
+                                <tr>
+                                    <td>{{ client.name }}</td>
+                                    <td>{{ client.email }}</td>
+                                    <td>{{ client.phone }}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <button class="btn-white btn btn-xs">Editar</button>
+                                            <button class="btn btn-xs btn-danger">Excluir</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
