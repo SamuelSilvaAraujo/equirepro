@@ -1,5 +1,5 @@
 from django.db import models
-from authentication.models import User
+from users.models import User
 
 class Address(models.Model):
     state = models.CharField(max_length=20)

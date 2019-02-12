@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentication',
+    'users',
     'core',
 ]
 
@@ -128,7 +128,7 @@ STATICFILES_DIRS = [
     'static/',
 ]
 
-AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
