@@ -3,14 +3,15 @@ from django.urls import path, include
 from core.views import *
 
 urlpatterns = [
-    path('agenda/', Agenda.as_view(), name="agenda"),
-    path('animais/', include([
-        path('garanhao/list/', Garanhoes.as_view(), name="garanhao_list"),
-        path('doadora/list/', Doadoras.as_view(), name="doadora_list"),
-        path('receptora/list/', Receptoras.as_view(), name="receptora_list"),
-        path('<str:type>/novo/', NewAnimal.as_view(), name="new_animal"),
-    ])),
-    path('cliente/list/', Clientes.as_view(), name="client_list"),
-    path('haras/list/', HarasList.as_view(), name="haras_list"),
-    path('auxiliar/list/', Auxiliares.as_view(), name="auxiliar_list"),
+    path('', IndexView.as_view(), name="index"),
+    path('agenda/', AgendaView.as_view(), name="agenda"),
+    path('garanhoes/', GaranhaoListView.as_view(), name="garanhao_list"),
+    path('doadoras/', DoadoraListView.as_view(), name="doadora_list"),
+    path('receptoras/', ReceptoraListView.as_view(), name="receptora_list"),
+    path('<str:type>/novoanimal/', AnimalCreateView.as_view(), name="animal_create"),
+    path('clientes/', ClienteListView.as_view(), name="client_list"),
+    path('novocliente/', ClienteCreateView.as_view(), name="client_create"),
+    path('haras/', HarasListView.as_view(), name="haras_list"),
+    path('auxiliares/', AuxiliarListView.as_view(), name="auxiliar_list"),
+    path('servicos/', ServicosView.as_view(), name="servicos"),
 ]

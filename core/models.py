@@ -21,9 +21,8 @@ class Client(models.Model):
         return self.name
 
 class Haras(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=60)
     proprietary = models.ForeignKey(Client, on_delete=models.CASCADE)
+    name = models.CharField(max_length=60)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True, blank=True)
     observation = models.TextField("Observações",null=True, blank=True)
 
@@ -31,7 +30,6 @@ class Haras(models.Model):
         return self.name
 
 class Ancillary(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     haras = models.ForeignKey(Haras, on_delete=models.CASCADE)
     name = models.CharField(max_length=60)
     phone = models.CharField(max_length=30)

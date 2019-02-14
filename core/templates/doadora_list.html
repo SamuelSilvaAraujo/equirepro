@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Doadoras{% endblock %}
+
+{% block header %}
+
+    <link href="{% static 'css/plugins/footable/footable.core.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h2>Doadoras</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <p>Animais</p>
+                </li>
+                <li class="active">
+                    <strong>Doadoras</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+
+        {% if object_list %}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Doadoras</h5>
+                            <div class="ibox-tools">
+                                <a href="{% url 'animal_create' 'doadora' %}" class="btn btn-primary btn-xs">+ Nova Doadora</a>
+                            </div>
+                        </div>
+
+                        <div class="ibox-content">
+
+                            <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Busca">
+
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
+                                <thead>
+                                <tr>
+
+                                    <th data-toggle="true">Nome</th>
+                                    <th>Proprietário</th>
+                                    <th>Locação</th>
+                                    <th>Auxiliar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for doadora in object_list %}
+
+                                    <tr>
+                                        <td>{{ doadora.name }}</td>
+                                        <td>{{ doadora.proprietary }}</td>
+                                        <td>{{ doadora.allocation }}</td>
+                                        <td>{{ doadora.ancillary }}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs">Editar</button>
+                                                <button class="btn btn-xs btn-danger">Excluir</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+
+            <div class="middle-box text-center animated fadeInRightBig">
+                <h3 class="font-bold">Nenhuma Doadora Cadastrada</h3>
+                <div class="error-desc">
+                    Cadastre suas doadoras aqui!
+                    <br/><a href="{% url 'animal_create' 'doadora' %}" class="btn btn-primary m-t">+ Nova Doadora</a>
+                </div>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/plugins/footable/footable.all.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.footable').footable();
+
+        });
+
+    </script>
+
+{% endblock %}

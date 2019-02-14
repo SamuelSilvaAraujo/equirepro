@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% include 'cliente_create.html' %}
 
 {% block title %}Novo Animal{% endblock %}
 
@@ -53,11 +54,18 @@
                                     <button class="btn btn-primary" type="submit">Salvar</button>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
             </div>
+
+            <div class="modal inmodal" id="clienteModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content animated bounceInRight">
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -68,9 +76,27 @@
     <script src="{% static 'js/plugins/select2/select2.full.min.js' %}"></script>
 
     <script>
-        $(document).ready(function(){
-            $(".select").select2();
+        $(document).ready(function() {
+
+            $(".selectP").select2()
+                .on('select2:open', () => {
+                    $(".select2-results:not(:has(a))").append('<a href="{% url 'client_create' %}" class="btn btn-primary" data-toggle="modal" data-target="#clienteModal" data-tooltip>Add Cliente</a>');
+
+                });
+
+            $(".selectL").select2()
+                .on('select2:open', () => {
+                    $(".select2-results:not(:has(a))").append('<a href="#" style="padding: 6px;height: 20px;display: inline-table;">Adicionar Novo Local</a>');
+
+                });
+
+            $(".selectA").select2()
+                .on('select2:open', () => {
+                    $(".select2-results:not(:has(a))").append('<a href="#" style="padding: 6px;height: 20px;display: inline-table;">Adicionar Novo Auxiliar</a>');
+
+                });
         });
+
     </script>
 
 {% endblock %}
