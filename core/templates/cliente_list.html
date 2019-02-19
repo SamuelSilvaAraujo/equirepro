@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block title %}Clientes{% endblock %}
+
+{% block header %}
+
+    <link href="{% static 'css/plugins/select2/select2.min.css' %}" rel="stylesheet">
+
+{% endblock %}
 
 {% block content %}
 
@@ -20,7 +25,7 @@
                     <div class="ibox-title">
                         <h5>Clientes</h5>
                         <div class="ibox-tools">
-                            <a href="#" class="btn btn-primary btn-xs">+ Novo Cliente</a>
+                            <a href="{% url 'client_create' %}" class="btn btn-primary btn-xs">+ Novo Cliente</a>
                         </div>
                     </div>
 
@@ -69,5 +74,20 @@
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/plugins/footable/footable.all.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.footable').footable();
+
+        });
+
+    </script>
 
 {% endblock %}

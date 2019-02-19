@@ -36,7 +36,7 @@
                         <div class="ibox-title">
                             <h5>Garanhões</h5>
                             <div class="ibox-tools">
-                                <a href="{% url 'new_animal' 'garanhao' %}" class="btn btn-primary btn-xs">+ Novo Garanhão</a>
+                                <a href="{% url 'animal_create' %}" class="btn btn-primary btn-xs">+ Novo Garanhão</a>
                             </div>
                         </div>
 
@@ -91,7 +91,7 @@
                 <h3 class="font-bold">Nenhum Garanhão Cadastrado</h3>
                 <div class="error-desc">
                     Cadastre seus garanhões aqui!
-                    <br/><a href="{% url 'animal_create' 'garanhao' %}" class="btn btn-primary m-t">+ Novo Garanhão</a>
+                    <br/><a href="{% url 'animal_create' %}" class="btn btn-primary m-t">+ Novo Garanhão</a>
                 </div>
             </div>
         {% endif %}

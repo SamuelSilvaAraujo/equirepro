@@ -13,26 +13,26 @@ class Address(models.Model):
 
 class Client(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=60)
-    email = models.EmailField(blank=True)
-    phone = models.CharField(max_length=30, blank=True)
+    name = models.CharField("Nome", max_length=60)
+    email = models.EmailField("E-mail", blank=True)
+    phone = models.CharField("Telefone", max_length=30, blank=True)
 
     def __str__(self):
         return self.name
 
 class Haras(models.Model):
-    proprietary = models.ForeignKey(Client, on_delete=models.CASCADE)
-    name = models.CharField(max_length=60)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True, blank=True)
-    observation = models.TextField("Observações",null=True, blank=True)
+    proprietary = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Proprietario")
+    name = models.CharField("Nome", max_length=60)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Endereço")
+    observation = models.TextField("Observações", null=True, blank=True)
 
     def __str__(self):
         return self.name
 
 class Ancillary(models.Model):
-    haras = models.ForeignKey(Haras, on_delete=models.CASCADE)
-    name = models.CharField(max_length=60)
-    phone = models.CharField(max_length=30)
+    haras = models.ForeignKey(Haras, on_delete=models.CASCADE, verbose_name="Haras")
+    name = models.CharField("Nome", max_length=60)
+    phone = models.CharField("Telefone", max_length=30)
 
     def __str__(self):
         return self.name
@@ -59,3 +59,8 @@ class CicloEstral(models.Model):
     date = models.DateField()
     description = models.TextField()
     egua = models.ForeignKey(Animal, on_delete=models.CASCADE)
+
+class Service(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField("Nome", max_length=50)
+    price = models.FloatField("Preço")
