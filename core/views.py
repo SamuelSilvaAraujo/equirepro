@@ -214,4 +214,3 @@ class AuxiliarCreateView(LoginRequiredMixin, CreateView):
         context = super(AuxiliarCreateView, self).get_context_data(**kwargs)
         context["auxiliar_page"] = "active"
         return context
-

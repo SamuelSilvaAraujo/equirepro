@@ -17,6 +17,8 @@
     <link href="{% static 'css/animate.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
+    {% block head %}{% endblock %}
+
 </head>
 
 <body class="gray-bg">
@@ -25,7 +27,7 @@
     <div>
         <div>
 
-            <h1 class="logo-name">EquiRepro</h1>
+            <h1 class="logo-name">ER</h1>
 
         </div>
         {% block content %}{% endblock %}
@@ -46,6 +48,9 @@
         });
     });
 </script>
+
+{% block script %}{% endblock %}
+
 </body>
 
 </html>

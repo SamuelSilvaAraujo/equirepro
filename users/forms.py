@@ -10,10 +10,11 @@ class LoginForm(AuthenticationForm):
 class RegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['email', 'crmv', 'name',]
+        fields = ['email', 'name', 'crmv_numero', 'crmv_estado', ]
         widgets = {
             'email': forms.TextInput(attrs={'placeholder': 'E-mail', 'class': 'form-control'}),
-            'crmv': forms.TextInput(attrs={'placeholder': 'CRMV', 'class': 'form-control'}),
+            'crmv_numero': forms.TextInput(attrs={'placeholder': 'CRMV Numero', 'class': 'form-control'}),
+            'crmv_estado': forms.Select(attrs={'class': 'select form-control'}),
             'name': forms.TextInput(attrs={'placeholder': 'Nome', 'class': 'form-control'}),
 
         }
