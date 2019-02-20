@@ -3,8 +3,9 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import *
 from .forms import *
+from .models import *
+
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -27,7 +28,25 @@ class GaranhaoListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(GaranhaoListView, self).get_context_data(**kwargs)
         context["garanhoes_page"] = "active"
-        context["animais_page"] = "active"
+        return context
+
+class GaranhaoCreateView(CreateView):
+    model = Animal
+    template_name = 'animal_create.html'
+    form_class = AnimalForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.type = 'garanhao'
+        obj.save()
+        return HttpResponseRedirect(reverse_lazy("garanhao_list"))
+
+    def get_context_data(self, **kwargs):
+        context = super(GaranhaoCreateView, self).get_context_data(**kwargs)
+        context["garanhoes_page"] = "active"
+        context["cancel"] = "garanhao_list"
+        context["title"] = "Novo Garanhão"
         return context
 
 class DoadoraListView(LoginRequiredMixin, ListView):
@@ -40,7 +59,25 @@ class DoadoraListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(DoadoraListView, self).get_context_data(**kwargs)
         context["doadoras_page"] = "active"
-        context["animais_page"] = "active"
+        return context
+
+class DoadoraCreateView(CreateView):
+    model = Animal
+    template_name = 'animal_create.html'
+    form_class = AnimalForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.type = 'doadora'
+        obj.save()
+        return HttpResponseRedirect(reverse_lazy("doadora_list"))
+
+    def get_context_data(self, **kwargs):
+        context = super(DoadoraCreateView, self).get_context_data(**kwargs)
+        context["doadoras_page"] = "active"
+        context["cancel"] = "doadora_list"
+        context["title"] = "Nova Doadora"
         return context
 
 class ReceptoraListView(LoginRequiredMixin, ListView):
@@ -53,55 +90,41 @@ class ReceptoraListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(ReceptoraListView, self).get_context_data(**kwargs)
         context["receptoras_page"] = "active"
-        context["animais_page"] = "active"
         return context
 
-class AnimalListView(LoginRequiredMixin, ListView):
-    model = Animal
-    template_name = 'animal_list.html'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(AnimalListView, self).get_context_data(**kwargs)
-        animais = Animal.objects.filter(user=self.request.user)
-        context["garanhoes"] = animais.filter(type="garanhao")
-        context["doadoras"] = animais.filter(type="doadora")
-        context["receptoras"] = animais.filter(type="receptora")
-        context["animais_total"] = animais.count()
-        context["animais_page"] = "active"
-        return context
-
-class AnimalCreateView(LoginRequiredMixin, CreateView):
+class ReceptoraCreateView(CreateView):
     model = Animal
     template_name = 'animal_create.html'
     form_class = AnimalForm
 
-    def get_context_data(self, **kwargs):
-        context = super(AnimalCreateView, self).get_context_data(**kwargs)
-        context["animais_page"] = "active"
-        return context
-
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = self.request.user
-        # type = self.kwargs['type']
-        # obj.type = type
+        obj.type = 'receptora'
         obj.save()
-        return HttpResponseRedirect(reverse_lazy("animal_list"))
+        return HttpResponseRedirect(reverse_lazy("receptora_list"))
 
-class ClienteListView(LoginRequiredMixin, ListView):
+    def get_context_data(self, **kwargs):
+        context = super(ReceptoraCreateView, self).get_context_data(**kwargs)
+        context["receptoras_page"] = "active"
+        context["cancel"] = "receptora_list"
+        context["title"] = "Nova receptora"
+        return context
+
+class ClientListView(LoginRequiredMixin, ListView):
     model = Client
-    template_name = 'cliente_list.html'
+    template_name = 'client_list.html'
 
     def get_queryset(self):
         return Client.objects.filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):
-        context = super(ClienteListView, self).get_context_data(**kwargs)
+        context = super(ClientListView, self).get_context_data(**kwargs)
         context["client_page"] = "active"
         return context
 
-class ClienteCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'cliente_create.html'
+class ClientCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'client_create.html'
     model = Client
     form_class = ClientForm
 
@@ -112,8 +135,47 @@ class ClienteCreateView(LoginRequiredMixin, CreateView):
         return HttpResponseRedirect(reverse_lazy("client_list"))
 
     def get_context_data(self, **kwargs):
-        context = super(ClienteCreateView, self).get_context_data(**kwargs)
+        context = super(ClientCreateView, self).get_context_data(**kwargs)
         context["client_page"] = "active"
+        return context
+
+class ClientCreateModalView(CreateView):
+    model = Client
+    template_name = 'client_create_modal.html'
+    form_class = ClientForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+        return HttpResponseRedirect(reverse_lazy("client_list"))
+
+class ServiceListView(LoginRequiredMixin, ListView):
+    template_name = 'service_list.html'
+    model = Service
+
+    def get_queryset(self):
+        return Service.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super(ServiceListView, self).get_context_data(**kwargs)
+        context["service_page"] = "active"
+        return context
+
+class ServiceCreateView(LoginRequiredMixin, CreateView):
+    model = Service
+    template_name = 'service_create.html'
+    form_class = ServiceForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+        return HttpResponseRedirect(reverse_lazy("service_list"))
+
+    def get_context_data(self, **kwargs):
+        context = super(ServiceCreateView, self).get_context_data(**kwargs)
+        context["service_page"] = "active"
         return context
 
 class HarasListView(LoginRequiredMixin, ListView):
@@ -153,14 +215,3 @@ class AuxiliarCreateView(LoginRequiredMixin, CreateView):
         context["auxiliar_page"] = "active"
         return context
 
-class ServicosView(LoginRequiredMixin, ListView):
-    template_name = 'servicos.html'
-    model = Service
-
-    def get_queryset(self):
-        return Service.objects.filter(user=self.request.user)
-
-    def get_context_data(self, **kwargs):
-        context = super(ServicosView, self).get_context_data(**kwargs)
-        context["service_page"] = "active"
-        return context

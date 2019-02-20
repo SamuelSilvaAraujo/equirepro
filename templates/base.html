@@ -44,7 +44,7 @@
                 <li class="{{ agenda_page }}">
                     <a href="{% url 'agenda' %}"><span class="nav-label">Agenda</span> </a>
                 </li>
-                <li>
+                <li {% if garanhoes_page or doadoras_page or receptoras_page %}class="active"{% endif %}>
                     <a href="{% url 'garanhao_list' %}"><span class="nav-label">Animais</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li class="{{ garanhoes_page }}">
@@ -58,20 +58,17 @@
                         </li>
                     </ul>
                 </li>
-                <li class="{{ animais_page }}">
-                    <a href="{% url 'animal_list' %}"><span class="nav-label">Animais</span></a>
-                </li>
                 <li class="{{ client_page }}">
                     <a href="{% url 'client_list' %}"><span class="nav-label">Clientes</span></a>
                 </li>
-                <li class="{{ haras_page }}">
-                    <a href="{% url 'haras_list' %}"><span class="nav-label">Haras</span></a>
-                </li>
-                <li class="{{ auxiliar_page }}">
-                    <a href="{% url 'auxiliar_list' %}"><span class="nav-label">Auxiliares</span></a>
-                </li>
+{#                <li class="{{ haras_page }}">#}
+{#                    <a href="{% url 'haras_list' %}"><span class="nav-label">Haras</span></a>#}
+{#                </li>#}
+{#                <li class="{{ auxiliar_page }}">#}
+{#                    <a href="{% url 'auxiliar_list' %}"><span class="nav-label">Auxiliares</span></a>#}
+{#                </li>#}
                 <li class="{{ service_page }}">
-                    <a href="{% url 'servicos' %}"><span class="nav-label">Serviços</span></a>
+                    <a href="{% url 'service_list' %}"><span class="nav-label">Serviços</span></a>
                 </li>
             </ul>
 

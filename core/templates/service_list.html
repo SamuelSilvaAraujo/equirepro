@@ -20,7 +20,7 @@
                         <div class="ibox-title">
                             <h5>Serviços</h5>
                             <div class="ibox-tools">
-                                <a href="{% url 'animal_create' %}" class="btn btn-primary btn-xs">+ Novo Serviço</a>
+                                <a href="{% url 'service_create' %}" class="btn btn-primary btn-xs">+ Novo Serviço</a>
                             </div>
                         </div>
 
@@ -70,10 +70,10 @@
         {% else %}
 
             <div class="middle-box text-center animated fadeInRightBig">
-                <h3 class="font-bold">Nenhuma Receptora Cadastrada</h3>
+                <h3 class="font-bold">Nenhum Serviço Cadastrado</h3>
                 <div class="error-desc">
-                    Cadastre suas receptoras aqui!
-                    <br/><a href="{% url 'animal_create' %}" class="btn btn-primary m-t">+ Nova Receptora</a>
+                    Cadastre seus serviços aqui!
+                    <br/><a href="{% url 'service_create' %}" class="btn btn-primary m-t">+ Novo Seriço</a>
                 </div>
             </div>
 

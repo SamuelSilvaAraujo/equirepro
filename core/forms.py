@@ -4,10 +4,9 @@ from core.models import Ancillary, Animal, Client, Haras, Service
 class AnimalForm(forms.ModelForm):
     class Meta:
         model = Animal
-        fields = ['name', 'type', 'proprietary', 'allocation', 'ancillary',]
+        fields = ['name', 'proprietary', 'allocation', 'ancillary', ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'type': forms.Select(attrs={'class': 'select form-control'}),
             'proprietary': forms.Select(attrs={'class': "selectP form-control"}),
             'allocation': forms.Select(attrs={'class': 'selectL form-control'}),
             'ancillary': forms.Select(attrs={'class': 'selectA form-control'}),
