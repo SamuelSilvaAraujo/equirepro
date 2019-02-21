@@ -182,6 +182,13 @@ class HarasListView(LoginRequiredMixin, ListView):
     model = Haras
     template_name = 'haras_list.html'
 
+    def get_queryset(self):
+        haras_list = []
+        clients = self.request.user.client_set.all()
+        for client in clients:
+            haras_list += client.haras_set.all()
+        return haras_list
+
     def get_context_data(self, **kwargs):
         context = super(HarasListView, self).get_context_data(**kwargs)
         context["haras_page"] = "active"
@@ -190,10 +197,20 @@ class HarasListView(LoginRequiredMixin, ListView):
 class HarasCreateView(LoginRequiredMixin, CreateView):
     model = Haras
     template_name = 'haras_create.html'
+    form_class = HarasForm
+    second_form_class = AddresForm
+
+    def form_valid(self, form):
+        adress_obj = self.second_form_class(self.request.POST).save()
+        haras_obj = form.save(commit=False)
+        haras_obj.address = adress_obj
+        haras_obj.save()
+        return HttpResponseRedirect(reverse_lazy("haras_list"))
 
     def get_context_data(self, **kwargs):
         context = super(HarasCreateView, self).get_context_data(**kwargs)
         context["haras_page"] = "active"
+        context["address_form"] = AddresForm
         return context
 
 class AuxiliarListView(LoginRequiredMixin, ListView):

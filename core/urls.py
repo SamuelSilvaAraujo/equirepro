@@ -15,6 +15,7 @@ urlpatterns = [
     path('cliente/novo/', ClientCreateView.as_view(), name="client_create"),
     path('cliente/modal/novo/', ClientCreateModalView.as_view(), name="client_modal_create"),
     path('haras/', HarasListView.as_view(), name="haras_list"),
+    path('haras/novo/', HarasCreateView.as_view(), name="haras_create"),
     path('auxiliares/', AuxiliarListView.as_view(), name="auxiliar_list"),
     path('novoauxiliar/', AuxiliarCreateView.as_view(), name="auxiliar_create"),
     path('servicos/', ServiceListView.as_view(), name="service_list"),

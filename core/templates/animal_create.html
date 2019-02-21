@@ -33,7 +33,7 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{{ field.label }}</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-8">
                                         {{ field }}
                                     </div>
                                 </div>
@@ -70,23 +70,27 @@
     <script>
         $(document).ready(function() {
 
-            $(".select").select2();
-
-            $(".selectP").select2()
+            $(".selectP").select2({
+                placeholder: "Proprietário"
+            })
                 .on('select2:open', () => {
-                    $(".select2-results:not(:has(a))").append('<a href="{% url 'client_modal_create' %}" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#modalId" data-tooltip>Novo Cliente</a>');
+                    $(".select2-results:not(:has(a))").append('<a href="{% url 'client_modal_create' %}" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#modalId" data-tooltip>Adicionar Proprietário</a>');
 
                 });
 
-            $(".selectL").select2()
+            $(".selectL").select2({
+                placeholder: "Localização"
+            })
                 .on('select2:open', () => {
-                    $(".select2-results:not(:has(a))").append('<a href="#" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#modalId" data-tooltip>Novo Local</a>');
+                    $(".select2-results:not(:has(a))").append('<a href="#" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#modalId" data-tooltip>Adicionar Localização</a>');
 
                 });
 
-            $(".selectA").select2()
+            $(".selectA").select2({
+                placeholder: "Auxiliar"
+            })
                 .on('select2:open', () => {
-                    $(".select2-results:not(:has(a))").append('<a href="#" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#modalId" data-tooltip>Novo Auxiliar</a>');
+                    $(".select2-results:not(:has(a))").append('<a href="#" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#modalId" data-tooltip>Adicionar Auxiliar</a>');
 
                 });
         });

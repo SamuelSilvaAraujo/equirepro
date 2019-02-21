@@ -36,20 +36,63 @@
                         <form method="post" class="form-horizontal">
                             {% csrf_token %}
 
-                            {% for field in form %}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{ form.name.label }}</label>
+                                <div class="col-sm-10">
+                                    {{ form.name }}
+                                </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">{{ field.label }}</label>
-                                    <div class="col-sm-10">
-                                        {{ field }}
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{ form.proprietary.label }}</label>
+                                <div class="col-sm-10">
+                                    {{ form.proprietary }}
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Endereço</label>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ address_form.street }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ address_form.number }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ address_form.district }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ address_form.city }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ address_form.state }}
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
-                            {% endfor %}
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{ form.observation.label }}</label>
+                                <div class="col-sm-10">
+                                    {{ form.observation }}
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
-                                    <a href="{% url 'auxiliar_list' %}" class="btn btn-white">Cancelar</a>
+                                    <a href="{% url 'haras_list' %}" class="btn btn-white">Cancelar</a>
                                     <button class="btn btn-primary" type="submit">Salvar</button>
                                 </div>
                             </div>
@@ -77,7 +120,11 @@
     <script>
         $(document).ready(function() {
 
-            $(".selectP").select()
+            $(".selectP").select2();
+
+            $(".selectE").select2({
+                placeholder: "Estado"
+            })
         });
 
     </script>
