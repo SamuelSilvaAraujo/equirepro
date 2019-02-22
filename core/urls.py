@@ -18,6 +18,7 @@ urlpatterns = [
     path('haras/novo/', HarasCreateView.as_view(), name="haras_create"),
     path('auxiliares/', AuxiliarListView.as_view(), name="auxiliar_list"),
     path('novoauxiliar/', AuxiliarCreateView.as_view(), name="auxiliar_create"),
-    path('servicos/', ServiceListView.as_view(), name="service_list"),
-    path('servico/novo/', ServiceCreateView.as_view(), name="service_create"),
+    path('servicos/', ServiceReliazedListView.as_view(), name="service_realized_list"),
+    path('servico/novo/', ServiceRealizedCreateView.as_view(), name="service_realized_create"),
+    path('servico/modal/create/', ServiceModalCreateView.as_view(), name="service_create"),
 ]

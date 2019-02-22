@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}Serviços{% endblock %}
+
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h2>Serviços</h2>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Serviços Prestados</h5>
+                        <div class="ibox-tools">
+                            <a href="{% url 'service_realized_create' %}" class="btn btn-primary btn-xs">+ Realizar Novo Serviço</a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+
+                        <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Busca">
+
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
+                            <thead>
+                            <tr>
+
+                                <th data-toggle="true">Nome</th>
+                                <th>Preço</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for service in object_list %}
+
+                                <tr>
+                                    <td>{{ service.client.name }}</td>
+                                    <td>{{ service.amount }}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <button class="btn-white btn btn-xs">Editar</button>
+                                            <button class="btn btn-xs btn-danger">Excluir</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Meus Serviços</h5>
+                        <div class="ibox-tools">
+                            <a href="{% url 'service_create' %}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalId" data-tooltip>+ Novo Serviço</a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+
+                        <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Busca">
+
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
+                            <thead>
+                            <tr>
+
+                                <th data-toggle="true">Nome</th>
+                                <th>Preço</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for service in service_list %}
+
+                                <tr>
+                                    <td>{{ service.name }}</td>
+                                    <td>R$ {{ service.price }}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <button class="btn-white btn btn-xs">Editar</button>
+                                            <button class="btn btn-xs btn-danger">Excluir</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal inmodal" id="modalId" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content animated bounceInRight">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

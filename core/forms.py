@@ -1,5 +1,6 @@
 from django import forms
-from core.models import Ancillary, Animal, Client, Haras, Service, Address
+from django.forms import formset_factory, modelform_factory, inlineformset_factory
+from core.models import *
 
 class AnimalForm(forms.ModelForm):
     class Meta:
@@ -62,3 +63,22 @@ class AddresForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'placeholder':'Cidade', 'class': 'form-control m-b'}),
             'state': forms.Select(attrs={'class': 'selectE form-control'}),
         }
+
+class ServiceRealizedForm(forms.ModelForm):
+    class Meta:
+        model = ServiceRealized
+        fields = ['client' ]
+        widgets = {
+            'client': forms.Select(attrs={'class': 'selectC form-control'}),
+        }
+
+class ServiceRealizedLineForm(forms.ModelForm):
+    class Meta:
+        model = ServiceRealizedLine
+        fields = ['service', 'animal', ]
+        widgets = {
+            'service': forms.Select(attrs={'class': 'selectS form-control'}),
+            'animal': forms.Select(attrs={'class': 'selectA form-control'}),
+        }
+
+ServiceRealizedLineFormset = inlineformset_factory(ServiceRealized, ServiceRealizedLine, form=ServiceRealizedLineForm, extra=1)

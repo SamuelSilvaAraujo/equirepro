@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from users.models import User
 
@@ -39,7 +40,7 @@ class Address(models.Model):
     number = models.IntegerField("Numero")
 
     def __str__(self):
-        return "{}-{}".format(self.street, self.number)
+        return "{}-{}".format(self.city, self.state)
 
 class Client(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -90,7 +91,37 @@ class CicloEstral(models.Model):
     description = models.TextField()
     egua = models.ForeignKey(Animal, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "{}/{}".format(self.date, self.egua.name)
+
 class Service(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField("Nome", max_length=50)
     price = models.FloatField("Preço")
+
+    def __str__(self):
+        return self.name
+
+class ServiceRealized(models.Model):
+    status_choices = [
+        ('open', 'Aberta'),
+        ('paid', 'Paga'),
+        ('cancelled', 'Cancelada'),
+    ]
+
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Cliente")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateTimeField(default=timezone.now)
+    status = models.CharField(max_length=9, choices=status_choices, default='open')
+    amount = models.FloatField("Valor total", default=0)
+
+    def __str__(self):
+        return self.client.name
+
+class ServiceRealizedLine(models.Model):
+    service_realized = models.ForeignKey(ServiceRealized, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{}-{}".format(self.service.name, self.animal.name)

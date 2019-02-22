@@ -1,11 +1,16 @@
+from functools import partial
+
+from django.db import transaction
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.utils.six import wraps
 from django.views.generic import TemplateView, ListView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.forms import formset_factory
 
 from .forms import *
 from .models import *
-
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -150,31 +155,57 @@ class ClientCreateModalView(CreateView):
         obj.save()
         return HttpResponseRedirect(reverse_lazy("client_list"))
 
-class ServiceListView(LoginRequiredMixin, ListView):
-    template_name = 'service_list.html'
-    model = Service
+class ServiceReliazedListView(LoginRequiredMixin, ListView):
+    template_name = 'service_realized_list.html'
+    model = ServiceRealized
 
     def get_queryset(self):
-        return Service.objects.filter(user=self.request.user)
+        return ServiceRealized.objects.filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):
-        context = super(ServiceListView, self).get_context_data(**kwargs)
+        context = super(ServiceReliazedListView, self).get_context_data(**kwargs)
+        context["service_page"] = "active"
+        context["service_list"] = Service.objects.filter(user=self.request.user)
+        return context
+
+class ServiceRealizedCreateView(LoginRequiredMixin, CreateView):
+    model = ServiceRealized
+    template_name = 'service_realized_create.html'
+    form_class = ServiceRealizedForm
+    second_form_class = ServiceRealizedLineFormset
+    success_url = reverse_lazy("service_realized_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(ServiceRealizedCreateView, self).get_context_data(**kwargs)
+        context["formset"] = ServiceRealizedLineFormset()
         context["service_page"] = "active"
         return context
 
-class ServiceCreateView(LoginRequiredMixin, CreateView):
+    def form_valid(self, form):
+        formset = self.second_form_class(self.request.POST)
+        with transaction.atomic():
+            print(formset.is_valid())
+            obj = form.save(commit=False)
+            obj.user = self.request.user
+            # obj.save()
+            if formset.is_valid():
+                formset.instance = obj
+                # formset.save()
+        return super(ServiceRealizedCreateView, self).form_valid(form)
+
+class ServiceModalCreateView(LoginRequiredMixin, CreateView):
     model = Service
-    template_name = 'service_create.html'
+    template_name = 'service_create_modal.html'
     form_class = ServiceForm
 
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = self.request.user
         obj.save()
-        return HttpResponseRedirect(reverse_lazy("service_list"))
+        return HttpResponseRedirect(reverse_lazy("service_realized_list"))
 
     def get_context_data(self, **kwargs):
-        context = super(ServiceCreateView, self).get_context_data(**kwargs)
+        context = super(ServiceModalCreateView, self).get_context_data(**kwargs)
         context["service_page"] = "active"
         return context
 
@@ -217,6 +248,15 @@ class AuxiliarListView(LoginRequiredMixin, ListView):
     model = Ancillary
     template_name = 'auxiliar_list.html'
 
+    def get_queryset(self):
+        auxiliares = []
+        clients = self.request.user.client_set.all()
+        for client in clients:
+            haras = client.haras_set.all()
+            for h in haras:
+                auxiliares += h.ancillary_set.all()
+        return auxiliares
+
     def get_context_data(self, **kwargs):
         context = super(AuxiliarListView, self).get_context_data(**kwargs)
         context["auxiliar_page"] = "active"
@@ -226,6 +266,7 @@ class AuxiliarCreateView(LoginRequiredMixin, CreateView):
     model = Ancillary
     template_name = 'auxiliar_create.html'
     form_class = AuxiliarForm
+    success_url = reverse_lazy("auxiliar_list")
 
     def get_context_data(self, **kwargs):
         context = super(AuxiliarCreateView, self).get_context_data(**kwargs)
