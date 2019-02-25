@@ -1,13 +1,8 @@
-from functools import partial
-
 from django.db import transaction
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.utils.six import wraps
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import TemplateView, ListView, CreateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.forms import formset_factory
 
 from .forms import *
 from .models import *
@@ -115,6 +110,10 @@ class ReceptoraCreateView(CreateView):
         context["cancel"] = "receptora_list"
         context["title"] = "Nova receptora"
         return context
+
+class AnimalPerfilView(DetailView):
+    model = Animal
+    template_name = 'animal_perfil.html'
 
 class ClientListView(LoginRequiredMixin, ListView):
     model = Client

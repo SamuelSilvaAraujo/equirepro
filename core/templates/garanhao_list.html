@@ -59,7 +59,7 @@
                                 {% for garanhao in object_list %}
 
                                     <tr>
-                                        <td><a data-toggle="tab" href="#" class="client-link">{{ garanhao.name }}</a></td>
+                                        <td><a href="{% url 'animal_perfil' garanhao.id %}" class="client-link">{{ garanhao.name }}</a></td>
                                         <td>{{ garanhao.proprietary }}</td>
                                         <td>{{ garanhao.allocation }}</td>
                                         <td>{{ garanhao.ancillary }}</td>
@@ -81,7 +81,6 @@
                                 </tr>
                                 </tfoot>
                             </table>
-
                         </div>
                     </div>
                 </div>

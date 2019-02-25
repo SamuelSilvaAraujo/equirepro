@@ -11,6 +11,7 @@ urlpatterns = [
     path('doadora/novo/', DoadoraCreateView.as_view(), name="doadora_create"),
     path('receptoras/', ReceptoraListView.as_view(), name="receptora_list"),
     path('receptora/novo/', ReceptoraCreateView.as_view(), name="receptora_create"),
+    path('animal/<int:pk>/', AnimalPerfilView.as_view(), name="animal_perfil"),
     path('clientes/', ClientListView.as_view(), name="client_list"),
     path('cliente/novo/', ClientCreateView.as_view(), name="client_create"),
     path('cliente/modal/novo/', ClientCreateModalView.as_view(), name="client_modal_create"),
