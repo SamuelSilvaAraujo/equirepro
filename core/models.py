@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.db import models
 from users.models import User
+from datetime import datetime, date
 
 class Address(models.Model):
     STATES_CHOICES = [
@@ -87,12 +88,12 @@ class Animal(models.Model):
         return "{}-{}".format(self.name, self.type)
 
 class CicloEstral(models.Model):
-    date = models.DateField()
-    description = models.TextField()
     egua = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    date = models.DateField("Data", default=datetime.now().strftime("%d/%m/%Y"))
+    description = models.TextField("Descrição")
 
     def __str__(self):
-        return "{}/{}".format(self.date, self.egua.name)
+        return "{} - {}".format(self.date, self.egua.name)
 
 class Service(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -22,6 +22,8 @@ urlpatterns = [
         path('cadastro/', ReceptoraCreateView.as_view(), name="receptora_create"),
         path('editar/<int:pk>/', ReceptoraUpdateView.as_view(), name="receptora_update"),
         path('exluir/<int:pk>/', ReceptoraDeleteView.as_view(), name="receptora_delete"),
+        path('<int:pk>/cicloestral/', ReceptoraCicloEstralView.as_view(), name="receptora_ciclo_estral"),
+        path('<int:pk>/cicloestral/cadastro/', ReceptoraCicloEstralCreateView.as_view(), name="receptora_ciclo_estral_create"),
     ])),
     path('clientes/', ClientListView.as_view(), name="client_list"),
     path('cliente/', include([

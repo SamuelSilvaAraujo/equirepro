@@ -82,3 +82,13 @@ class ServiceRealizedLineForm(forms.ModelForm):
         }
 
 ServiceRealizedLineFormset = inlineformset_factory(ServiceRealized, ServiceRealizedLine, form=ServiceRealizedLineForm, extra=1)
+
+
+class CicloEstralForm(forms.ModelForm):
+    class Meta:
+        model = CicloEstral
+        fields = ['date', 'description', ]
+        widgets = {
+            'date': forms.TextInput(attrs={'class': 'form-control', 'id': 'date_added'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+        }

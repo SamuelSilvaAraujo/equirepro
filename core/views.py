@@ -192,6 +192,35 @@ class ReceptoraDeleteView(DeleteView):
         context["cancel"] = "receptora_list"
         return context
 
+class ReceptoraCicloEstralView(ListView):
+    model = CicloEstral
+    template_name = 'ciclo_estral.html'
+
+    def get_queryset(self):
+        return Animal.objects.get(pk=self.kwargs["pk"]).cicloestral_set.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(ReceptoraCicloEstralView, self).get_context_data(**kwargs)
+        context["egua_id"] = self.kwargs["pk"]
+        return context
+
+class ReceptoraCicloEstralCreateView(CreateView):
+    model = CicloEstral
+    form_class = CicloEstralForm
+    template_name = 'ciclo_estral_create.html'
+
+    def form_valid(self, form):
+        egua = Animal.objects.get(pk=self.kwargs["pk"])
+        obj = form.save(commit=False)
+        obj.egua = egua
+        obj.save()
+        return HttpResponseRedirect(reverse_lazy("receptora_ciclo_estral", kwargs={"pk": self.kwargs["pk"]}))
+
+    def get_context_data(self, **kwargs):
+        context = super(ReceptoraCicloEstralCreateView, self).get_context_data(**kwargs)
+        context["egua_id"] = self.kwargs["pk"]
+        return context
+
 #Clientes views
 class ClientListView(LoginRequiredMixin, ListView):
     model = Client
