@@ -49,9 +49,9 @@
                                 <tr>
 
                                     <th data-toggle="true">Nome</th>
-                                    <th>Proprietário</th>
-                                    <th>Locação</th>
-                                    <th>Auxiliar</th>
+                                    <th data-hide="all">Proprietário</th>
+                                    <th data-hide="all">Locação</th>
+                                    <th data-hide="all">Auxiliar</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -59,14 +59,15 @@
                                 {% for garanhao in object_list %}
 
                                     <tr>
-                                        <td><a href="{% url 'animal_perfil' garanhao.id %}" data-toggle="modal" data-target="#modalId" data-tooltip class="client-link">{{ garanhao.name }}</a></td>
+                                        <td>{{ garanhao.name }}</td>
                                         <td>{{ garanhao.proprietary }}</td>
                                         <td>{{ garanhao.allocation }}</td>
                                         <td>{{ garanhao.ancillary }}</td>
                                         <td class="text-right">
                                             <div class="btn-group">
-                                                <button class="btn-white btn btn-xs">Editar</button>
-                                                <button class="btn btn-xs btn-danger">Excluir</button>
+                                                <a href="https://web.whatsapp.com/send?phone={{ garanhao.ancillary.phone }}" target="_blank" class="btn btn-xs btn-primary"><i class="fa fa-whatsapp"></i> Mensagem</a>
+                                                <a href="{% url 'garanhao_update' garanhao.id %}" class="btn-white btn btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                                                <a href="{% url 'garanhao_delete' garanhao.id %}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Excluir</a>
                                             </div>
                                         </td>
                                     </tr>

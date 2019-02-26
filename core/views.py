@@ -1,7 +1,7 @@
 from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView, DetailView
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import *
@@ -18,6 +18,7 @@ class AgendaView(LoginRequiredMixin, TemplateView):
         context["agenda_page"] = "active"
         return context
 
+#Garanhão views
 class GaranhaoListView(LoginRequiredMixin, ListView):
     model = Animal
     template_name = 'garanhao_list.html'
@@ -49,6 +50,33 @@ class GaranhaoCreateView(CreateView):
         context["title"] = "Novo Garanhão"
         return context
 
+class GaranhaoUpdateView(UpdateView):
+    model = Animal
+    form_class = AnimalForm
+    template_name = 'animal_create.html'
+    success_url = reverse_lazy("garanhao_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(GaranhaoUpdateView, self).get_context_data(**kwargs)
+        context["garanhoes_page"] = "active"
+        context["cancel"] = "garanhao_list"
+        context["title"] = "Editar Garanhão"
+        return context
+
+class GaranhaoDeleteView(DeleteView):
+    model = Animal
+    success_url = reverse_lazy("garanhao_list")
+    template_name = 'animal_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(GaranhaoDeleteView, self).get_context_data(**kwargs)
+        context["garanhoes_page"] = "active"
+        context["confirme"] = "garanhao_delete"
+        context["animal_id"] = self.kwargs["pk"]
+        context["cancel"] = "garanhao_list"
+        return context
+
+#Doadoras views
 class DoadoraListView(LoginRequiredMixin, ListView):
     model = Animal
     template_name = 'doadora_list.html'
@@ -80,6 +108,33 @@ class DoadoraCreateView(CreateView):
         context["title"] = "Nova Doadora"
         return context
 
+class DoadoraUpdateView(UpdateView):
+    model = Animal
+    form_class = AnimalForm
+    template_name = 'animal_create.html'
+    success_url = reverse_lazy("doadora_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(DoadoraUpdateView, self).get_context_data(**kwargs)
+        context["doadoras_page"] = "active"
+        context["cancel"] = "doadora_list"
+        context["title"] = "Editar Doadora"
+        return context
+
+class DoadoraDeleteView(DeleteView):
+    model = Animal
+    success_url = reverse_lazy("doadora_list")
+    template_name = 'animal_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DoadoraDeleteView, self).get_context_data(**kwargs)
+        context["doadoras_page"] = "active"
+        context["confirme"] = "doadora_delete"
+        context["animal_id"] = self.kwargs["pk"]
+        context["cancel"] = "doadora_list"
+        return context
+
+#Receptoras views
 class ReceptoraListView(LoginRequiredMixin, ListView):
     model = Animal
     template_name = 'receptora_list.html'
@@ -111,10 +166,33 @@ class ReceptoraCreateView(CreateView):
         context["title"] = "Nova receptora"
         return context
 
-class AnimalPerfilView(DetailView):
+class ReceptoraUpdateView(UpdateView):
     model = Animal
-    template_name = 'animal_perfil.html'
+    form_class = AnimalForm
+    template_name = 'animal_create.html'
+    success_url = reverse_lazy("receptora_list")
 
+    def get_context_data(self, **kwargs):
+        context = super(ReceptoraUpdateView, self).get_context_data(**kwargs)
+        context["receptoras_page"] = "active"
+        context["cancel"] = "receptora_list"
+        context["title"] = "Editar Receptora"
+        return context
+
+class ReceptoraDeleteView(DeleteView):
+    model = Animal
+    success_url = reverse_lazy("receptora_list")
+    template_name = 'animal_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ReceptoraDeleteView, self).get_context_data(**kwargs)
+        context["receptoras_page"] = "active"
+        context["confirme"] = "receptora_delete"
+        context["animal_id"] = self.kwargs["pk"]
+        context["cancel"] = "receptora_list"
+        return context
+
+#Clientes views
 class ClientListView(LoginRequiredMixin, ListView):
     model = Client
     template_name = 'client_list.html'
@@ -154,6 +232,7 @@ class ClientCreateModalView(CreateView):
         obj.save()
         return HttpResponseRedirect(reverse_lazy("client_list"))
 
+#Serviços views
 class ServiceReliazedListView(LoginRequiredMixin, ListView):
     template_name = 'service_realized_list.html'
     model = ServiceRealized
@@ -208,6 +287,7 @@ class ServiceModalCreateView(LoginRequiredMixin, CreateView):
         context["service_page"] = "active"
         return context
 
+#Haras views
 class HarasListView(LoginRequiredMixin, ListView):
     model = Haras
     template_name = 'haras_list.html'
@@ -243,6 +323,7 @@ class HarasCreateView(LoginRequiredMixin, CreateView):
         context["address_form"] = AddresForm
         return context
 
+#Auxiliares views
 class AuxiliarListView(LoginRequiredMixin, ListView):
     model = Ancillary
     template_name = 'auxiliar_list.html'

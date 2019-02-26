@@ -1,26 +1,31 @@
-<div class="modal-header">
-    <h4 class="modal-title">{{ object.name }}</h4>
-</div>
 <div class="modal-body">
     <div class="row">
-        <div class="col-md-4">
-            <span class="bar">Haras</span>
-            <h5>{{ object.allocation.name }}</h5>
-        </div>
-        <div class="col-md-4">
-            <span class="line">Propietario</span>
-            <h5>{{ object.proprietary.name }}</h5>
-        </div>
-        <div class="col-md-4">
-            <span class="bar">Auxiliar</span>
-            <h5>{{ object.ancillary.name }}</h5>
-        </div>
-    </div>
-    <div class="user-button">
-        <div class="row">
-            <div class="col-md-4">
-                <a href="https://api.whatsapp.com/send?phone={{ object.ancillary.phone }}" type="button" class="btn btn-primary btn-sm btn-block" target="_blank"><i class="fa fa-envelope"></i> Envie uma mensagem</a>
+        <div class="col-md-12">
+
+            <div class="ibox-content text-center">
+                <h1>{{ object.name }}</h1>
+                <p class="font-bold">{{ object.get_type_display }}</p>
+
+                <ul class="list-unstyled m-t-md">
+                    <li>
+                        <label>Proprietario:</label>
+                        {{ object.proprietary.name }}
+                    </li>
+                    <li>
+                        <label>Haras:</label>
+                        {{ object.allocation.name }}
+                    </li>
+                    <li>
+                        <label>Auxiliar:</label>
+                        {{ object.ancillary.name }}
+                    </li>
+                </ul>
+
+                <div class="text-center">
+                    <a class="btn btn-xs btn-primary">Envie uma mensagem</a>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
