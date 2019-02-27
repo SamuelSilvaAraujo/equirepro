@@ -287,6 +287,10 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
         context["client_page"] = "active"
         return context
 
+class ClienteUpdateView(LoginRequiredMixin, UpdateView):
+    model = Client
+    template_name = 'client_create.html'
+
 class ClientCreateModalView(CreateView):
     model = Client
     template_name = 'client_create_modal.html'

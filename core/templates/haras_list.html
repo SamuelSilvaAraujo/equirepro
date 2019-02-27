@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Haras{% endblock %}
+
+{% block header %}
+
+    <link href="{% static 'css/plugins/footable/footable.core.css' %}" rel="stylesheet">
+
+{% endblock %}
 
 {% block content %}
 
@@ -43,8 +50,8 @@
                                     <td>{{ haras.proprietary.name }}</td>
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs">Editar</button>
-                                            <button class="btn btn-xs btn-danger">Excluir</button>
+                                            <button class="btn-white btn btn-sm"><i class="fa fa-edit"></i> Editar</button>
+                                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Excluir</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -65,5 +72,20 @@
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/plugins/footable/footable.all.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.footable').footable();
+
+        });
+
+    </script>
 
 {% endblock %}
