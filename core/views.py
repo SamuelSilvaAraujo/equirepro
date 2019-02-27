@@ -134,6 +134,39 @@ class DoadoraDeleteView(DeleteView):
         context["cancel"] = "doadora_list"
         return context
 
+class DoadoraCicloEstralView(ListView):
+    model = CicloEstral
+    template_name = 'ciclo_estral.html'
+
+    def get_queryset(self):
+        return Animal.objects.get(pk=self.kwargs["pk"]).cicloestral_set.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(DoadoraCicloEstralView, self).get_context_data(**kwargs)
+        context["egua_obj"] = Animal.objects.get(pk=self.kwargs["pk"])
+        context["doadoras_page"] = "active"
+        context["create_page"] = "doadora_ciclo_estral_create"
+        context["title"] = "Doadora"
+        return context
+
+class DoadoraCicloEstralCreateView(CreateView):
+    model = CicloEstral
+    form_class = CicloEstralForm
+    template_name = 'ciclo_estral_create.html'
+
+    def form_valid(self, form):
+        egua = Animal.objects.get(pk=self.kwargs["pk"])
+        obj = form.save(commit=False)
+        obj.egua = egua
+        obj.save()
+        return HttpResponseRedirect(reverse_lazy("doadora_ciclo_estral", kwargs={"pk": self.kwargs["pk"]}))
+
+    def get_context_data(self, **kwargs):
+        context = super(DoadoraCicloEstralCreateView, self).get_context_data(**kwargs)
+        context["egua_id"] = self.kwargs["pk"]
+        context["doadoras_page"] = "active"
+        return context
+
 #Receptoras views
 class ReceptoraListView(LoginRequiredMixin, ListView):
     model = Animal
@@ -201,7 +234,10 @@ class ReceptoraCicloEstralView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ReceptoraCicloEstralView, self).get_context_data(**kwargs)
-        context["egua_id"] = self.kwargs["pk"]
+        context["egua_obj"] = Animal.objects.get(pk=self.kwargs["pk"])
+        context["receptoras_page"] = "active"
+        context["create_page"] = "receptora_ciclo_estral_create"
+        context["title"] = "Receptora"
         return context
 
 class ReceptoraCicloEstralCreateView(CreateView):
@@ -219,6 +255,7 @@ class ReceptoraCicloEstralCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(ReceptoraCicloEstralCreateView, self).get_context_data(**kwargs)
         context["egua_id"] = self.kwargs["pk"]
+        context["receptoras_page"] = "active"
         return context
 
 #Clientes views

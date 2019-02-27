@@ -6,13 +6,13 @@
 
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2>Receptoras</h2>
+            <h2>{{ egua_obj.name }}</h2>
             <ol class="breadcrumb">
                 <li>
-                    <p>Animais</p>
+                    <p>{{ title }}</p>
                 </li>
                 <li class="active">
-                    <strong>Receptoras</strong>
+                    <strong>Ciclo Estral</strong>
                 </li>
             </ol>
         </div>
@@ -24,7 +24,7 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <div class="text-center float-e-margins p-md">
-                            <a href="{% url 'receptora_ciclo_estral_create' egua_id %}" class="btn btn-xs btn-primary">Novo Registro</a>
+                            <a href="{% url create_page egua_obj.id %}" class="btn btn-sm btn-primary">+ Novo Registro</a>
                         </div>
                     </div>
                     <div class="ibox-content">

@@ -16,6 +16,8 @@ urlpatterns = [
         path('cadastro/', DoadoraCreateView.as_view(), name="doadora_create"),
         path('editar/<int:pk>/', DoadoraUpdateView.as_view(), name="doadora_update"),
         path('exluir/<int:pk>/', DoadoraDeleteView.as_view(), name="doadora_delete"),
+        path('<int:pk>/cicloestral/', DoadoraCicloEstralView.as_view(), name="doadora_ciclo_estral"),
+        path('<int:pk>/cicloestral/cadastro/', DoadoraCicloEstralCreateView.as_view(), name="doadora_ciclo_estral_create"),
     ])),
     path('receptoras/', ReceptoraListView.as_view(), name="receptora_list"),
     path('receptora/', include([

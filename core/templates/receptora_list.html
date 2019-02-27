@@ -65,10 +65,10 @@
                                         <td>{{ receptora.ancillary }}</td>
                                         <td class="text-right">
                                             <div class="btn-group">
-                                                <a href="https://web.whatsapp.com/send?phone={{ receptora.ancillary.phone }}" target="_blank" class="btn btn-xs btn-primary"><i class="fa fa-whatsapp"></i> Mensagem</a>
-                                                <a href="{% url 'receptora_ciclo_estral' receptora.id %}" class="btn btn-success btn-xs">Ciclo Estral</a>
-                                                <a href="{% url 'receptora_update' receptora.id %}" class="btn-white btn btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                                                <a href="{% url 'receptora_delete' receptora.id %}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Excluir</a>
+                                                <a href="https://web.whatsapp.com/send?phone={{ receptora.ancillary.phone }}" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-whatsapp"></i> Mensagem</a>
+                                                <a href="{% url 'receptora_ciclo_estral' receptora.id %}" class="btn btn-success btn-sm"><i class="fa fa-circle-thin"></i> Ciclo Estral</a>
+                                                <a href="{% url 'receptora_update' receptora.id %}" class="btn-white btn btn-sm"><i class="fa fa-edit"></i> Editar</a>
+                                                <a href="{% url 'receptora_delete' receptora.id %}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Excluir</a>
                                             </div>
                                         </td>
                                     </tr>

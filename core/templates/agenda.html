@@ -4,7 +4,9 @@
 {% block title %}Agenda{% endblock %}
 
 {% block header %}
+
     <link href="{% static 'css/plugins/fullcalendar/fullcalendar.min.css' %}" rel="stylesheet">
+
 {% endblock %}
 
 {% block content %}
@@ -15,8 +17,8 @@
         </div>
     </div>
 
-    <div class="wrapper wrapper-content">
-        <div class="row animated fadeInDown">
+    <div class="wrapper wrapper-content animated fadeInDown">
+        <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-content">
@@ -114,4 +116,5 @@
         });
 
     </script>
+
 {% endblock %}
