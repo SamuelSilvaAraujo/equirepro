@@ -17,6 +17,8 @@
     <link href="{% static 'css/animate.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
+    <link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
     {% block header %} {% endblock %}
 
 </head>
@@ -30,7 +32,7 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="{% url 'index' %}">
                             <span class="clear">
                                 <span class="block m-t-xs"> <strong class="font-bold">EquiRepro</strong>
                              </span>
@@ -119,6 +121,8 @@
 
 <!-- jQuery UI  -->
 <script src="{% static 'js/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+
+<script src="{% static 'js/plugins/jasny/jasny-bootstrap.min.js' %}"></script>
 
 {% block script %}{% endblock %}
 

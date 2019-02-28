@@ -19,7 +19,7 @@ class ClientForm(forms.ModelForm):
         fields = ['name', 'phone', 'email', ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'phone': forms.TextInput(attrs={'class': "form-control"}),
+            'phone': forms.TextInput(attrs={'class': "form-control", 'data-mask': '(99) 99999-9999'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
 
@@ -29,7 +29,7 @@ class AncillaryForm(forms.ModelForm):
         fields = ['name', 'phone', 'haras', ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'phone': forms.TextInput(attrs={'class': "form-control"}),
+            'phone': forms.TextInput(attrs={'class': "form-control", 'data-mask': '(99) 99999-9999'}),
             'haras': forms.Select(attrs={'class': 'select form-control'}),
         }
 
@@ -89,6 +89,6 @@ class CicloEstralForm(forms.ModelForm):
         model = CicloEstral
         fields = ['date', 'description', ]
         widgets = {
-            'date': forms.TextInput(attrs={'class': 'form-control', 'id': 'date_added'}),
+            'date': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
         }

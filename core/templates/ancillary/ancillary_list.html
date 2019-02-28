@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load filters %}
 
 {% block title %}Auxiliares{% endblock %}
 
@@ -52,6 +53,7 @@
                                     <td>{{ auxiliar.phone }}</td>
                                     <td class="text-right">
                                         <div class="btn-group">
+                                            <a href="https://web.whatsapp.com/send?phone=+55{{ auxiliar.phone|remove_mask }}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-whatsapp"></i> Mensagem</a>
                                             <a href="{% url 'auxiliar_update' auxiliar.id %}" class="btn-white btn btn-sm"><i class="fa fa-edit"></i> Editar</a>
                                             <a href="{% url 'auxiliar_delete' auxiliar.id %}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Excluir</a>
                                         </div>
