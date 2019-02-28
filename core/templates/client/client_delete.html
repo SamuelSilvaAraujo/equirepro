@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Cliente{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'client_delete' client_id %}" method="POST">
+        {% csrf_token %}
+
+        <div class="wrapper wrapper-content">
+            <div class="middle-box text-center animated fadeInRightBig">
+                <h3 class="font-bold">Deseja excluir esse Cliente?</h3>
+                <div class="error-desc">
+                    Se você excluir todas as informações seram perdidas!<br><br>
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                    <a href="{% url 'client_list' %}" class="btn btn-white">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

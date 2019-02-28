@@ -50,8 +50,8 @@
                                     <td>{{ haras.proprietary.name }}</td>
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-sm"><i class="fa fa-edit"></i> Editar</button>
-                                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Excluir</button>
+                                            <a href="{% url 'haras_update' haras.id %}" class="btn-white btn btn-sm"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="{% url 'haras_delete' haras.id %}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Excluir</a>
                                         </div>
                                     </td>
                                 </tr>

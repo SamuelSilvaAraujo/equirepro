@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar Animal{% endblock %}
+
+{% block header %}
+
+    <link href="{% static 'css/plugins/select2/select2.min.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h2>Editar Animal</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <p>Animais</p>
+                </li>
+                <li class="active">
+                    <strong>Editar</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>{{ title }}</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal">
+                            {% csrf_token %}
+
+                            {% for field in form %}
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{ field.label }}</label>
+                                    <div class="col-sm-8">
+                                        {{ field }}
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <a href="{% url cancel %}" class="btn btn-white">Cancelar</a>
+                                    <button class="btn btn-primary" type="submit">Salvar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal inmodal" id="modalId" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content animated bounceInRight">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/plugins/select2/select2.full.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $(".selectP").select2({
+                placeholder: "Proprietário"
+            })
+                .on('select2:open', () => {
+                    $(".select2-results:not(:has(a))").append('<a href="{% url 'client_modal_create' %}" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#modalId" data-tooltip>Adicionar Proprietário</a>');
+
+                });
+
+            $(".selectL").select2({
+                placeholder: "Localização"
+            })
+                .on('select2:open', () => {
+                    $(".select2-results:not(:has(a))").append('<a href="#" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#modalId" data-tooltip>Adicionar Localização</a>');
+
+                });
+
+            $(".selectA").select2({
+                placeholder: "Auxiliar"
+            })
+                .on('select2:open', () => {
+                    $(".select2-results:not(:has(a))").append('<a href="#" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#modalId" data-tooltip>Adicionar Auxiliar</a>');
+
+                });
+        });
+
+    </script>
+
+{% endblock %}

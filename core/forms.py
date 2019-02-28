@@ -23,7 +23,7 @@ class ClientForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
 
-class AuxiliarForm(forms.ModelForm):
+class AncillaryForm(forms.ModelForm):
     class Meta:
         model = Ancillary
         fields = ['name', 'phone', 'haras', ]

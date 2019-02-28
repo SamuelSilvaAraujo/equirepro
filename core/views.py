@@ -1,7 +1,7 @@
 from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import *
@@ -21,7 +21,7 @@ class AgendaView(LoginRequiredMixin, TemplateView):
 #Garanhão views
 class GaranhaoListView(LoginRequiredMixin, ListView):
     model = Animal
-    template_name = 'garanhao_list.html'
+    template_name = 'animal/garanhao_list.html'
 
     def get_queryset(self):
         return Animal.objects.filter(type='garanhao', user=self.request.user)
@@ -33,7 +33,7 @@ class GaranhaoListView(LoginRequiredMixin, ListView):
 
 class GaranhaoCreateView(CreateView):
     model = Animal
-    template_name = 'animal_create.html'
+    template_name = 'animal/animal_create.html'
     form_class = AnimalForm
 
     def form_valid(self, form):
@@ -53,7 +53,7 @@ class GaranhaoCreateView(CreateView):
 class GaranhaoUpdateView(UpdateView):
     model = Animal
     form_class = AnimalForm
-    template_name = 'animal_create.html'
+    template_name = 'animal/animal_update.html'
     success_url = reverse_lazy("garanhao_list")
 
     def get_context_data(self, **kwargs):
@@ -66,7 +66,7 @@ class GaranhaoUpdateView(UpdateView):
 class GaranhaoDeleteView(DeleteView):
     model = Animal
     success_url = reverse_lazy("garanhao_list")
-    template_name = 'animal_delete.html'
+    template_name = 'animal/animal_delete.html'
 
     def get_context_data(self, **kwargs):
         context = super(GaranhaoDeleteView, self).get_context_data(**kwargs)
@@ -79,7 +79,7 @@ class GaranhaoDeleteView(DeleteView):
 #Doadoras views
 class DoadoraListView(LoginRequiredMixin, ListView):
     model = Animal
-    template_name = 'doadora_list.html'
+    template_name = 'animal/doadora_list.html'
 
     def get_queryset(self):
         return Animal.objects.filter(type='doadora', user=self.request.user)
@@ -91,7 +91,7 @@ class DoadoraListView(LoginRequiredMixin, ListView):
 
 class DoadoraCreateView(CreateView):
     model = Animal
-    template_name = 'animal_create.html'
+    template_name = 'animal/animal_create.html'
     form_class = AnimalForm
 
     def form_valid(self, form):
@@ -111,7 +111,7 @@ class DoadoraCreateView(CreateView):
 class DoadoraUpdateView(UpdateView):
     model = Animal
     form_class = AnimalForm
-    template_name = 'animal_create.html'
+    template_name = 'animal/animal_update.html'
     success_url = reverse_lazy("doadora_list")
 
     def get_context_data(self, **kwargs):
@@ -124,7 +124,7 @@ class DoadoraUpdateView(UpdateView):
 class DoadoraDeleteView(DeleteView):
     model = Animal
     success_url = reverse_lazy("doadora_list")
-    template_name = 'animal_delete.html'
+    template_name = 'animal/animal_delete.html'
 
     def get_context_data(self, **kwargs):
         context = super(DoadoraDeleteView, self).get_context_data(**kwargs)
@@ -136,7 +136,7 @@ class DoadoraDeleteView(DeleteView):
 
 class DoadoraCicloEstralView(ListView):
     model = CicloEstral
-    template_name = 'ciclo_estral.html'
+    template_name = 'animal/ciclo_estral.html'
 
     def get_queryset(self):
         return Animal.objects.get(pk=self.kwargs["pk"]).cicloestral_set.all()
@@ -152,7 +152,7 @@ class DoadoraCicloEstralView(ListView):
 class DoadoraCicloEstralCreateView(CreateView):
     model = CicloEstral
     form_class = CicloEstralForm
-    template_name = 'ciclo_estral_create.html'
+    template_name = 'animal/ciclo_estral_create.html'
 
     def form_valid(self, form):
         egua = Animal.objects.get(pk=self.kwargs["pk"])
@@ -170,7 +170,7 @@ class DoadoraCicloEstralCreateView(CreateView):
 #Receptoras views
 class ReceptoraListView(LoginRequiredMixin, ListView):
     model = Animal
-    template_name = 'receptora_list.html'
+    template_name = 'animal/receptora_list.html'
 
     def get_queryset(self):
         return Animal.objects.filter(type='receptora', user=self.request.user)
@@ -182,7 +182,7 @@ class ReceptoraListView(LoginRequiredMixin, ListView):
 
 class ReceptoraCreateView(CreateView):
     model = Animal
-    template_name = 'animal_create.html'
+    template_name = 'animal/animal_create.html'
     form_class = AnimalForm
 
     def form_valid(self, form):
@@ -202,7 +202,7 @@ class ReceptoraCreateView(CreateView):
 class ReceptoraUpdateView(UpdateView):
     model = Animal
     form_class = AnimalForm
-    template_name = 'animal_create.html'
+    template_name = 'animal/animal_update.html'
     success_url = reverse_lazy("receptora_list")
 
     def get_context_data(self, **kwargs):
@@ -215,7 +215,7 @@ class ReceptoraUpdateView(UpdateView):
 class ReceptoraDeleteView(DeleteView):
     model = Animal
     success_url = reverse_lazy("receptora_list")
-    template_name = 'animal_delete.html'
+    template_name = 'animal/animal_delete.html'
 
     def get_context_data(self, **kwargs):
         context = super(ReceptoraDeleteView, self).get_context_data(**kwargs)
@@ -227,7 +227,7 @@ class ReceptoraDeleteView(DeleteView):
 
 class ReceptoraCicloEstralView(ListView):
     model = CicloEstral
-    template_name = 'ciclo_estral.html'
+    template_name = 'animal/ciclo_estral.html'
 
     def get_queryset(self):
         return Animal.objects.get(pk=self.kwargs["pk"]).cicloestral_set.all()
@@ -243,7 +243,7 @@ class ReceptoraCicloEstralView(ListView):
 class ReceptoraCicloEstralCreateView(CreateView):
     model = CicloEstral
     form_class = CicloEstralForm
-    template_name = 'ciclo_estral_create.html'
+    template_name = 'animal/ciclo_estral_create.html'
 
     def form_valid(self, form):
         egua = Animal.objects.get(pk=self.kwargs["pk"])
@@ -261,7 +261,7 @@ class ReceptoraCicloEstralCreateView(CreateView):
 #Clientes views
 class ClientListView(LoginRequiredMixin, ListView):
     model = Client
-    template_name = 'client_list.html'
+    template_name = 'client/client_list.html'
 
     def get_queryset(self):
         return Client.objects.filter(user=self.request.user)
@@ -272,7 +272,7 @@ class ClientListView(LoginRequiredMixin, ListView):
         return context
 
 class ClientCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'client_create.html'
+    template_name = 'client/client_create.html'
     model = Client
     form_class = ClientForm
 
@@ -287,13 +287,31 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
         context["client_page"] = "active"
         return context
 
-class ClienteUpdateView(LoginRequiredMixin, UpdateView):
+class ClientUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
-    template_name = 'client_create.html'
+    template_name = 'client/client_update.html'
+    form_class = ClientForm
+    success_url = reverse_lazy("client_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(ClientUpdateView, self).get_context_data(**kwargs)
+        context["client_page"] = "active"
+        return context
+
+class ClientDeleteView(LoginRequiredMixin, DeleteView):
+    model = Client
+    template_name = 'client/client_delete.html'
+    success_url = reverse_lazy("client_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(ClientDeleteView, self).get_context_data(**kwargs)
+        context["client_page"] = "active"
+        context["client_id"] = self.kwargs["pk"]
+        return context
 
 class ClientCreateModalView(CreateView):
     model = Client
-    template_name = 'client_create_modal.html'
+    template_name = 'client/client_create_modal.html'
     form_class = ClientForm
 
     def form_valid(self, form):
@@ -304,7 +322,7 @@ class ClientCreateModalView(CreateView):
 
 #Serviços views
 class ServiceReliazedListView(LoginRequiredMixin, ListView):
-    template_name = 'service_realized_list.html'
+    template_name = 'service/service_realized_list.html'
     model = ServiceRealized
 
     def get_queryset(self):
@@ -318,7 +336,7 @@ class ServiceReliazedListView(LoginRequiredMixin, ListView):
 
 class ServiceRealizedCreateView(LoginRequiredMixin, CreateView):
     model = ServiceRealized
-    template_name = 'service_realized_create.html'
+    template_name = 'service/service_realized_create.html'
     form_class = ServiceRealizedForm
     second_form_class = ServiceRealizedLineFormset
     success_url = reverse_lazy("service_realized_list")
@@ -343,7 +361,7 @@ class ServiceRealizedCreateView(LoginRequiredMixin, CreateView):
 
 class ServiceModalCreateView(LoginRequiredMixin, CreateView):
     model = Service
-    template_name = 'service_create_modal.html'
+    template_name = 'service/service_create_modal.html'
     form_class = ServiceForm
 
     def form_valid(self, form):
@@ -360,7 +378,7 @@ class ServiceModalCreateView(LoginRequiredMixin, CreateView):
 #Haras views
 class HarasListView(LoginRequiredMixin, ListView):
     model = Haras
-    template_name = 'haras_list.html'
+    template_name = 'haras/haras_list.html'
 
     def get_queryset(self):
         haras_list = []
@@ -376,7 +394,7 @@ class HarasListView(LoginRequiredMixin, ListView):
 
 class HarasCreateView(LoginRequiredMixin, CreateView):
     model = Haras
-    template_name = 'haras_create.html'
+    template_name = 'haras/haras_create.html'
     form_class = HarasForm
     second_form_class = AddresForm
 
@@ -393,10 +411,40 @@ class HarasCreateView(LoginRequiredMixin, CreateView):
         context["address_form"] = AddresForm
         return context
 
+class HarasUpdateView(LoginRequiredMixin, UpdateView):
+    model = Haras
+    form_class = HarasForm
+    template_name = 'haras/haras_update.html'
+    second_form_class = AddresForm
+
+    def form_valid(self, form):
+        adress_obj = self.second_form_class(self.request.POST).save()
+        haras_obj = form.save(commit=False)
+        haras_obj.address = adress_obj
+        haras_obj.save()
+        return HttpResponseRedirect(reverse_lazy("haras_list"))
+
+    def get_context_data(self, **kwargs):
+        context = super(HarasUpdateView, self).get_context_data(**kwargs)
+        context["haras_page"] = "active"
+        context["address_form"] = self.second_form_class(instance=self.object.address)
+        return context
+
+class HarasDeleteView(LoginRequiredMixin, DeleteView):
+    model = Haras
+    template_name = 'haras/haras_delete.html'
+    success_url = reverse_lazy("haras_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(HarasDeleteView, self).get_context_data(**kwargs)
+        context["haras_page"] = "active"
+        context["haras_id"] = self.kwargs["pk"]
+        return context
+
 #Auxiliares views
-class AuxiliarListView(LoginRequiredMixin, ListView):
+class AncillaryListView(LoginRequiredMixin, ListView):
     model = Ancillary
-    template_name = 'auxiliar_list.html'
+    template_name = 'ancillary/ancillary_list.html'
 
     def get_queryset(self):
         auxiliares = []
@@ -408,17 +456,39 @@ class AuxiliarListView(LoginRequiredMixin, ListView):
         return auxiliares
 
     def get_context_data(self, **kwargs):
-        context = super(AuxiliarListView, self).get_context_data(**kwargs)
+        context = super(AncillaryListView, self).get_context_data(**kwargs)
         context["auxiliar_page"] = "active"
         return context
 
-class AuxiliarCreateView(LoginRequiredMixin, CreateView):
+class AncillaryCreateView(LoginRequiredMixin, CreateView):
     model = Ancillary
-    template_name = 'auxiliar_create.html'
-    form_class = AuxiliarForm
+    template_name = 'ancillary/ancillary_create.html'
+    form_class = AncillaryForm
     success_url = reverse_lazy("auxiliar_list")
 
     def get_context_data(self, **kwargs):
-        context = super(AuxiliarCreateView, self).get_context_data(**kwargs)
+        context = super(AncillaryCreateView, self).get_context_data(**kwargs)
         context["auxiliar_page"] = "active"
+        return context
+
+class AncillaryUpdateView(LoginRequiredMixin, UpdateView):
+    model = Ancillary
+    form_class = AncillaryForm
+    template_name = 'ancillary/ancillary_update.html'
+    success_url = reverse_lazy("auxiliar_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(AncillaryUpdateView, self).get_context_data(**kwargs)
+        context["auxiliar_page"] = "active"
+        return context
+
+class AncillaryDeleteView(LoginRequiredMixin, DeleteView):
+    model = Ancillary
+    template_name = 'ancillary/ancillary_delete.html'
+    success_url = reverse_lazy("auxiliar_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(AncillaryDeleteView, self).get_context_data(**kwargs)
+        context["auxiliar_page"] = "active"
+        context["auxiliar_id"] = self.kwargs["pk"]
         return context

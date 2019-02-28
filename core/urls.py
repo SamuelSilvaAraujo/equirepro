@@ -30,15 +30,21 @@ urlpatterns = [
     path('clientes/', ClientListView.as_view(), name="client_list"),
     path('cliente/', include([
         path('cadastro/', ClientCreateView.as_view(), name="client_create"),
+        path('editar/<int:pk>/', ClientUpdateView.as_view(), name="client_update"),
+        path('exluir/<int:pk>/', ClientDeleteView.as_view(), name="client_delete"),
         path('modal/novo/', ClientCreateModalView.as_view(), name="client_modal_create"),
     ])),
     path('haras/', include([
         path('', HarasListView.as_view(), name="haras_list"),
         path('cadastro/', HarasCreateView.as_view(), name="haras_create"),
+        path('editar/<int:pk>/', HarasUpdateView.as_view(), name="haras_update"),
+        path('excluir/<int:pk>/', HarasDeleteView.as_view(), name="haras_delete"),
     ])),
-    path('auxiliares/', AuxiliarListView.as_view(), name="auxiliar_list"),
-    path('auxiliar', include([
-        path('cadastro/', AuxiliarCreateView.as_view(), name="auxiliar_create"),
+    path('auxiliares/', AncillaryListView.as_view(), name="auxiliar_list"),
+    path('auxiliar/', include([
+        path('cadastro/', AncillaryCreateView.as_view(), name="auxiliar_create"),
+        path('editar/<int:pk>/', AncillaryUpdateView.as_view(), name="auxiliar_update"),
+        path('excluir/<int:pk>/', AncillaryDeleteView.as_view(), name="auxiliar_delete"),
     ])),
     path('servicos/', ServiceReliazedListView.as_view(), name="service_realized_list"),
     path('servico/', include([

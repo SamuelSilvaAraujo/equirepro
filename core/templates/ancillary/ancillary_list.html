@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Auxiliares{% endblock %}
+
+{% block header %}
+
+    <link href="{% static 'css/plugins/footable/footable.core.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h2>Auxiliares</h2>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Auxiliares</h5>
+                        <div class="ibox-tools">
+                            <a href="{% url 'auxiliar_create' %}" class="btn btn-primary btn-xs">+ Novo Auxiliar</a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+
+                        <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Busca">
+
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
+                            <thead>
+                            <tr>
+
+                                <th data-toggle="true">Nome</th>
+                                <th>Haras</th>
+                                <th>Telefone</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for auxiliar in object_list %}
+
+                                <tr>
+                                    <td>{{ auxiliar.name }}</td>
+                                    <td>{{ auxiliar.haras.name }}</td>
+                                    <td>{{ auxiliar.phone }}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <a href="{% url 'auxiliar_update' auxiliar.id %}" class="btn-white btn btn-sm"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="{% url 'auxiliar_delete' auxiliar.id %}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Excluir</a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/plugins/footable/footable.all.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.footable').footable();
+
+        });
+
+    </script>
+
+{% endblock %}
