@@ -53,7 +53,7 @@ class Client(models.Model):
         return self.name
 
 class Haras(models.Model):
-    proprietary = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Proprietario")
+    proprietary = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Proprietário")
     name = models.CharField("Nome", max_length=60)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Endereço")
     observation = models.TextField("Observações", null=True, blank=True)

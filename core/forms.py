@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import formset_factory, modelform_factory, inlineformset_factory
+from django.forms import inlineformset_factory
 from core.models import *
 
 class AnimalForm(forms.ModelForm):
@@ -57,10 +57,10 @@ class AddresForm(forms.ModelForm):
         model = Address
         fields = '__all__'
         widgets = {
-            'street': forms.TextInput(attrs={'placeholder':'Rua', 'class': 'form-control m-b'}),
-            'number': forms.NumberInput(attrs={'placeholder':'Numero', 'class': 'form-control m-b'}),
-            'district': forms.TextInput(attrs={'placeholder':'Bairro', 'class': 'form-control m-b'}),
-            'city': forms.TextInput(attrs={'placeholder':'Cidade', 'class': 'form-control m-b'}),
+            'street': forms.TextInput(attrs={'class': 'form-control m-b'}),
+            'number': forms.NumberInput(attrs={'class': 'form-control m-b'}),
+            'district': forms.TextInput(attrs={'class': 'form-control m-b'}),
+            'city': forms.TextInput(attrs={'class': 'form-control m-b'}),
             'state': forms.Select(attrs={'class': 'selectE form-control'}),
         }
 

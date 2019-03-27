@@ -22,74 +22,93 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Novo Haras</h5>
+                        <h3>Novo Haras</h3>
                     </div>
-                    <div class="ibox-content">
-                        <form method="post" class="form-horizontal">
-                            {% csrf_token %}
+                    <form method="post" class="form-horizontal">
+                        {% csrf_token %}
+                        <div class="ibox-content">
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{ form.name.label }}</label>
+                                <label class="control-label col-sm-2">{{ form.name.label }}</label>
                                 <div class="col-sm-10">
                                     {{ form.name }}
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="hr-line-dashed"></div>
+                        <div class="ibox-content">
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{ form.proprietary.label }}</label>
+                                <label class="control-label col-sm-2">{{ form.proprietary.label }}</label>
                                 <div class="col-sm-10">
                                     {{ form.proprietary }}
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="hr-line-dashed"></div>
+                        <div class="ibox-content">
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Endereço</label>
+                                <h3 class="control-label col-sm-2">Endereço</h3>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">{{ address_form.street.label }}</label>
                                 <div class="col-sm-10">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            {{ address_form.street }}
-                                        </div>
-                                        <div class="col-md-6">
-                                            {{ address_form.number }}
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            {{ address_form.district }}
-                                        </div>
-                                        <div class="col-md-6">
-                                            {{ address_form.city }}
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            {{ address_form.state }}
-                                        </div>
-                                    </div>
+                                    {{ address_form.street }}
                                 </div>
                             </div>
 
-                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">{{ address_form.number.label }}</label>
+                                <div class="col-sm-10">
+                                    {{ address_form.number }}
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">{{ address_form.district.label }}</label>
+                                <div class="col-sm-10">
+                                    {{ address_form.district }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">{{ address_form.city.label }}</label>
+                                <div class="col-sm-10">
+                                    {{ address_form.city }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">{{ address_form.state.label }}</label>
+                                <div class="col-sm-10">
+                                    {{ address_form.state }}
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="ibox-content">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">{{ form.observation.label }}</label>
                                 <div class="col-sm-10">
                                     {{ form.observation }}
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="ibox-content">
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
                                     <a href="{% url 'haras_list' %}" class="btn btn-white">Cancelar</a>
                                     <button class="btn btn-primary" type="submit">Salvar</button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
 
@@ -114,9 +133,7 @@
 
             $(".selectP").select2();
 
-            $(".selectE").select2({
-                placeholder: "Estado"
-            })
+            $(".selectE").select2();
         });
 
     </script>
