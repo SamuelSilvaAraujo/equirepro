@@ -3,29 +3,27 @@
 
 {% block title %}Haras{% endblock %}
 
-{% block header %}
+{% block head %}
 
     <link href="{% static 'css/plugins/footable/footable.core.css' %}" rel="stylesheet">
 
 {% endblock %}
 
+{% block header %}
+    <h2>Haras</h2>
+{% endblock %}
+
 {% block content %}
 
-    <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-lg-12">
-            <h2>Haras</h2>
-        </div>
-    </div>
+    {% if object_list %}
 
-    <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>Haras</h5>
                         <div class="ibox-tools">
-                            <a href="{% url 'haras_create' %}" class="btn btn-primary btn-xs">+ Novo haras</a>
+                            <a href="{% url 'haras_create' %}" class="btn btn-info btn-xs">+ Novo haras</a>
                         </div>
                     </div>
 
@@ -36,22 +34,19 @@
                         <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
                             <thead>
                             <tr>
-
                                 <th data-toggle="true">Nome</th>
                                 <th>Proprietário</th>
                             </tr>
                             </thead>
                             <tbody>
-
                             {% for haras in object_list %}
-
                                 <tr>
                                     <td>{{ haras.name }}</td>
                                     <td>{{ haras.proprietary.name }}</td>
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <a href="{% url 'haras_update' haras.id %}" class="btn-white btn btn-sm"><i class="fa fa-edit"></i> Editar</a>
-                                            <a href="{% url 'haras_delete' haras.id %}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Excluir</a>
+                                            <a href="{% url 'haras_update' haras.id %}" class="btn-white btn btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="{% url 'haras_delete' haras.id %}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Excluir</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -71,7 +66,16 @@
                 </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <div class="middle-box text-center">
+            <h3 class="font-bold">Nenhum haras Cadastrado</h3>
+            <div class="error-desc">
+                Cadastre seus haras aqui!
+                <br/><a href="{% url 'haras_create' %}" class="btn btn-primary m-t">+ Novo Haras</a>
+            </div>
+        </div>
+
+    {% endif %}
 
 {% endblock %}
 

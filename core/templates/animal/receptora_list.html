@@ -4,104 +4,95 @@
 
 {% block title %}Receptoras{% endblock %}
 
-{% block header %}
+{% block head %}
 
     <link href="{% static 'css/plugins/footable/footable.core.css' %}" rel="stylesheet">
 
 {% endblock %}
 
+{% block header %}
+
+    <h2>Receptoras</h2>
+
+{% endblock %}
+
 {% block content %}
 
-    <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-lg-12">
-            <h2>Receptoras</h2>
-            <ol class="breadcrumb">
-                <li>
-                    <p>Animais</p>
-                </li>
-                <li class="active">
-                    <strong>Receptoras</strong>
-                </li>
-            </ol>
-        </div>
-    </div>
 
-    <div class="wrapper wrapper-content animated fadeInRight">
+    {% if object_list %}
 
-        {% if object_list %}
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Receptoras</h5>
-                            <div class="ibox-tools">
-                                <a href="{% url 'receptora_create' %}" class="btn btn-primary btn-xs">+ Nova Receptora</a>
-                            </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Receptoras</h5>
+                        <div class="ibox-tools">
+                            <a href="{% url 'receptora_create' %}" class="btn btn-info btn-xs">+ Nova Receptora</a>
                         </div>
+                    </div>
 
-                        <div class="ibox-content">
+                    <div class="ibox-content">
 
-                            <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Busca">
+                        <input type="text" class="form-control input-sm m-b-xs" id="filter" placeholder="Busca">
 
-                            <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
-                                <thead>
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
+                            <thead>
+                            <tr>
+
+                                <th data-toggle="true">Nome</th>
+                                <th data-hide="all">Proprietário</th>
+                                <th data-hide="all">Locação</th>
+                                <th data-hide="all">Auxiliar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for receptora in object_list %}
+
                                 <tr>
-
-                                    <th data-toggle="true">Nome</th>
-                                    <th data-hide="all">Proprietário</th>
-                                    <th data-hide="all">Locação</th>
-                                    <th data-hide="all">Auxiliar</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                {% for receptora in object_list %}
-
-                                    <tr>
-                                        <td>{{ receptora.name }}</td>
-                                        <td>{{ receptora.proprietary }}</td>
-                                        <td>{{ receptora.allocation }}</td>
-                                        <td>{{ receptora.ancillary }}</td>
-                                        <td class="text-right">
-                                            <div class="btn-group">
-                                                <a href="https://web.whatsapp.com/send?phone=+55{{ receptora.ancillary.phone|remove_mask }}" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-whatsapp"></i> Mensagem</a>
-                                                <a href="{% url 'receptora_ciclo_estral' receptora.id %}" class="btn btn-success btn-sm"><i class="fa fa-circle-thin"></i> Ciclo Estral</a>
-                                                <a href="{% url 'receptora_update' receptora.id %}" class="btn-white btn btn-sm"><i class="fa fa-edit"></i> Editar</a>
-                                                <a href="{% url 'receptora_delete' receptora.id %}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Excluir</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                {% endfor %}
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="5">
-                                        <ul class="pagination pull-right"></ul>
+                                    <td>{{ receptora.name }}</td>
+                                    <td>{{ receptora.proprietary }}</td>
+                                    <td>{{ receptora.allocation }}</td>
+                                    <td>{{ receptora.ancillary }}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <a href="https://web.whatsapp.com/send?phone=+55{{ receptora.ancillary.phone|remove_mask }}" target="_blank" class="btn btn-xs btn-primary"><i class="fa fa-whatsapp"></i> Mensagem</a>
+                                            <a href="{% url 'receptora_ciclo_estral' receptora.id %}" class="btn btn-success btn-xs"><i class="fa fa-circle-thin"></i> Ciclo Estral</a>
+                                            <a href="{% url 'receptora_update' receptora.id %}" class="btn-white btn btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="{% url 'receptora_delete' receptora.id %}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Excluir</a>
+                                        </div>
                                     </td>
                                 </tr>
-                                </tfoot>
-                            </table>
 
-                        </div>
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+
                     </div>
                 </div>
             </div>
+        </div>
 
-        {% else %}
+    {% else %}
 
-            <div class="middle-box text-center animated fadeInRightBig">
-                <h3 class="font-bold">Nenhuma Receptora Cadastrada</h3>
-                <div class="error-desc">
-                    Cadastre suas receptoras aqui!
-                    <br/><a href="{% url 'receptora_create' %}" class="btn btn-primary m-t">+ Nova Receptora</a>
-                </div>
+        <div class="middle-box text-center">
+            <h3 class="font-bold">Nenhuma Receptora Cadastrada</h3>
+            <div class="error-desc">
+                Cadastre suas receptoras aqui!
+                <br/><a href="{% url 'receptora_create' %}" class="btn btn-info m-t">+ Nova Receptora</a>
             </div>
+        </div>
 
-        {% endif %}
+    {% endif %}
 
-    </div>
+
 
 {% endblock %}
 

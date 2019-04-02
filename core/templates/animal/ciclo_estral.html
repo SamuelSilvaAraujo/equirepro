@@ -18,36 +18,35 @@
         </div>
     </div>
 
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <div class="text-center float-e-margins p-md">
-                            <a href="{% url create_page egua_obj.id %}" class="btn btn-sm btn-primary">+ Novo Registro</a>
-                        </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="text-center float-e-margins p-md">
+                        <a href="{% url create_page egua_obj.id %}" class="btn btn-sm btn-primary">+ Novo Registro</a>
                     </div>
-                    <div class="ibox-content">
+                </div>
+                <div class="ibox-content">
 
-                        <div class="vertical-container dark-timeline">
-                            {% for ciclo in object_list %}
-                                <div class="vertical-timeline-block">
-                                    <div class="vertical-timeline-icon navy-bg">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-
-                                    <div class="vertical-timeline-content">
-                                        <h2>{{ ciclo.date }}</h2>
-                                        <p>{{ ciclo.description }}</p>
-                                    </div>
+                    <div class="vertical-container dark-timeline">
+                        {% for ciclo in object_list %}
+                            <div class="vertical-timeline-block">
+                                <div class="vertical-timeline-icon navy-bg">
+                                    <i class="fa fa-calendar"></i>
                                 </div>
-                            {% endfor %}
-                        </div>
 
+                                <div class="vertical-timeline-content">
+                                    <h2>{{ ciclo.date }}</h2>
+                                    <p>{{ ciclo.description }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+
 
 {% endblock %}

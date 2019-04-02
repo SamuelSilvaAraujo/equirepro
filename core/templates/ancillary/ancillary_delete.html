@@ -7,14 +7,12 @@
     <form action="{% url 'auxiliar_delete' auxiliar_id %}" method="POST">
         {% csrf_token %}
 
-        <div class="wrapper wrapper-content">
-            <div class="middle-box text-center animated fadeInRightBig">
-                <h3 class="font-bold">Deseja excluir esse Auxiliar?</h3>
-                <div class="error-desc">
-                    Se você excluir todas as informações seram perdidas!<br><br>
-                    <button type="submit" class="btn btn-danger">Excluir</button>
-                    <a href="{% url 'auxiliar_list' %}" class="btn btn-white">Cancelar</a>
-                </div>
+        <div class="middle-box text-center">
+            <h3 class="font-bold">Deseja excluir esse Auxiliar?</h3>
+            <div class="error-desc">
+                Se você excluir todas as informações seram perdidas!<br><br>
+                <button type="submit" class="btn btn-danger">Excluir</button>
+                <a href="{% url 'auxiliar_list' %}" class="btn btn-white">Cancelar</a>
             </div>
         </div>
     </form>

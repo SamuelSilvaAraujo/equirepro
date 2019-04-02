@@ -4,21 +4,19 @@
 
 {% block title %}Auxiliares{% endblock %}
 
-{% block header %}
+{% block head %}
 
     <link href="{% static 'css/plugins/footable/footable.core.css' %}" rel="stylesheet">
 
 {% endblock %}
 
+{% block header %}
+    <h2>Auxiliares</h2>
+{% endblock %}
+
 {% block content %}
 
-    <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-lg-12">
-            <h2>Auxiliares</h2>
-        </div>
-    </div>
-
-    <div class="wrapper wrapper-content animated fadeInRight">
+    {% if object_list %}
         <div class="row">
 
             <div class="col-lg-12">
@@ -26,7 +24,7 @@
                     <div class="ibox-title">
                         <h5>Auxiliares</h5>
                         <div class="ibox-tools">
-                            <a href="{% url 'auxiliar_create' %}" class="btn btn-primary btn-xs">+ Novo Auxiliar</a>
+                            <a href="{% url 'auxiliar_create' %}" class="btn btn-info btn-xs">+ Novo Auxiliar</a>
                         </div>
                     </div>
 
@@ -53,9 +51,9 @@
                                     <td>{{ auxiliar.phone }}</td>
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <a href="https://web.whatsapp.com/send?phone=+55{{ auxiliar.phone|remove_mask }}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-whatsapp"></i> Mensagem</a>
-                                            <a href="{% url 'auxiliar_update' auxiliar.id %}" class="btn-white btn btn-sm"><i class="fa fa-edit"></i> Editar</a>
-                                            <a href="{% url 'auxiliar_delete' auxiliar.id %}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Excluir</a>
+                                            <a href="https://web.whatsapp.com/send?phone=+55{{ auxiliar.phone|remove_mask }}" target="_blank" class="btn btn-primary btn-xs"><i class="fa fa-whatsapp"></i> Mensagem</a>
+                                            <a href="{% url 'auxiliar_update' auxiliar.id %}" class="btn-white btn btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="{% url 'auxiliar_delete' auxiliar.id %}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Excluir</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -75,7 +73,17 @@
                 </div>
             </div>
         </div>
-    </div>
+    {% else %}
+
+        <div class="middle-box text-center">
+            <h3 class="font-bold">Nenhum Auxiliar Cadastrado</h3>
+            <div class="error-desc">
+                Cadastre seus auxiliares aqui!
+                <br/><a href="{% url 'auxiliar_create' %}" class="btn btn-info m-t">+ Novo Auxiliar</a>
+            </div>
+        </div>
+
+    {% endif %}
 
 {% endblock %}
 

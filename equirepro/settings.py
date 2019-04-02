@@ -132,5 +132,5 @@ AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'agenda'
+LOGIN_REDIRECT_URL = 'garanhao_list'
 LOGOUT_REDIRECT_URL = 'login'

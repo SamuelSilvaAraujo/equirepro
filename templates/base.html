@@ -19,7 +19,7 @@
 
     <link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
 
-    {% block header %} {% endblock %}
+    {% block head %}{% endblock %}
 
 </head>
 
@@ -39,13 +39,10 @@
                             </span>
                         </a>
                     </div>
-                    <div class="logo-element">
-                        ER
-                    </div>
                 </li>
-                <li class="{{ agenda_page }}">
-                    <a href="{% url 'agenda' %}"><span class="nav-label">Agenda</span> </a>
-                </li>
+                {#                <li class="{{ agenda_page }}">#}
+                {#                    <a href="{% url 'agenda' %}"><span class="nav-label">Agenda</span> </a>#}
+                {#                </li>#}
                 <li {% if garanhoes_page or doadoras_page or receptoras_page %}class="active"{% endif %}>
                     <a href="{% url 'garanhao_list' %}"><span class="nav-label">Animais</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -69,8 +66,11 @@
                 <li class="{{ auxiliar_page }}">
                     <a href="{% url 'auxiliar_list' %}"><span class="nav-label">Auxiliares</span></a>
                 </li>
-                <li class="{{ service_page }}">
-                    <a href="{% url 'service_realized_list' %}"><span class="nav-label">Serviços</span></a>
+                {#                <li class="{{ service_page }}">#}
+                {#                    <a href="{% url 'service_realized_list' %}"><span class="nav-label">Serviços</span></a>#}
+                {#                </li>#}
+                <li>
+                    <a href="{% url 'logout' %}">Sair</a>
                 </li>
             </ul>
 
@@ -78,28 +78,24 @@
     </nav>
 
     <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="row border-bottom white-bg">
+            <nav class="navbar navbar-static-top" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#">
+                        <i class="fa fa-bars"></i>
+                    </a>
                 </div>
-                <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <a href="{% url 'logout' %}">
-                            <i class="fa fa-sign-out"></i> Sair
-                        </a>
-                    </li>
+                <ul class="nav navbar-top-links navbar-left">
+                    <li>{% block header %}{% endblock %}</li>
                 </ul>
-
             </nav>
         </div>
 
-        {% block content %}{% endblock %}
+        <div class="wrapper wrapper-content animated fadeInRightBig">
+            {% block content %}{% endblock %}
+        </div>
 
         <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
             <div>
                 <strong>Copyright</strong> Example Company &copy; 2014-2017
             </div>
