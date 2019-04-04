@@ -11,15 +11,42 @@
 
     <h3>Cadastrar-se no EquiRepro</h3>
     <p>Crie uma conta para ver em ação.</p>
-    <form class="m-t" role="form" method="post" action="" id="formID">
+    <form class="m-t" role="form" method="post" action="">
         {% csrf_token %}
 
-        {% for field in form %}
-            <div class="form-group">
-                {{ field }}
-                {{ field.errors }}
+        <div class="form-group">
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+
+        <div class="form-group">
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+
+        <div class="form-group row">
+
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form.crmv_numero }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form.crmv_estado }}
+                    </div>
+                </div>
             </div>
-        {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.password1 }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+        </div>
+
 
         <button type="submit" class="btn btn-primary block full-width m-b">Cadastrar</button>
 
@@ -32,27 +59,13 @@
 {% block script %}
 
     <script src="{% static 'js/plugins/select2/select2.full.min.js' %}"></script>
-    <script src="{% static 'js/plugins/validate/jquery.validate.min.js' %}"></script>
 
     <script>
-
         $(document).ready(function(){
             $(".select").select2({
-                placeholder: "CRMV Estado",
-            });
-
-            $("#formID").validate({
-                 rules: {
-                     password: {
-                         required: true,
-                         minlength: 3
-                     }
-                 }
-             });
-
-        });
-
-
+                'placeholder': 'CRMV Estado'
+            })
+        })
     </script>
 
 {% endblock %}

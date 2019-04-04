@@ -13,7 +13,7 @@
 
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
-    <link href="{% static 'css/plugins/iCheck/custom.css' %}" rel="stylesheet">
+
     <link href="{% static 'css/animate.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
@@ -23,31 +23,17 @@
 
 <body class="gray-bg">
 
+<h1 class="logo-name text-center">EquiRepro</h1>
+
 <div class="middle-box text-center loginscreen animated fadeInDown">
-    <div>
-        <div>
 
-            <h1 class="logo-name">ER</h1>
-
-        </div>
-        {% block content %}{% endblock %}
-        <p class="m-t"> <small>EquiRepro &copy; 2019</small> </p>
-    </div>
+    {% block content %}{% endblock %}
+    <p class="m-t"> <small>EquiRepro &copy; 2019</small> </p>
 </div>
 
-<!-- Mainly scripts -->
 <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<!-- iCheck -->
-<script src="{% static 'js/plugins/iCheck/icheck.min.js' %}"></script>
-<script>
-    $(document).ready(function(){
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });
-    });
-</script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
 
 {% block script %}{% endblock %}
 
