@@ -4,18 +4,15 @@ from .models import User
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'E-mail'}))
+    username = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'E-mail'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Senha'}))
 
 class RegisterForm(UserCreationForm):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'E-mail', 'class': 'form-control'}),
-                             error_messages={'class': 'text-danger'})
-
-
     class Meta:
         model = User
         fields = ['email', 'name', 'crmv_numero', 'crmv_estado', ]
         widgets = {
+            'email': forms.EmailInput(attrs={'placeholder': 'E-mail', 'class': 'form-control'}),
             'crmv_numero': forms.TextInput(attrs={'placeholder': 'CRMV Numero', 'class': 'form-control'}),
             'crmv_estado': forms.Select(attrs={'class': 'select form-control'}),
             'name': forms.TextInput(attrs={'placeholder': 'Nome', 'class': 'form-control'}),

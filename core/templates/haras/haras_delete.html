@@ -2,6 +2,20 @@
 
 {% block title %}Excluir haras{% endblock %}
 
+{% block header %}
+    <div class="col-lg-10">
+        <h2>Excluir Haras</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <p>Haras</p>
+            </li>
+            <li class="breadcrumb-item">
+                <strong>Excluir Haras</strong>
+            </li>
+        </ol>
+    </div>
+{% endblock %}
+
 {% block content %}
 
     <form action="{% url 'haras_delete' haras_id %}" method="POST">

@@ -2,6 +2,22 @@
 
 {% block title %}Exluir Animal{% endblock %}
 
+{% block header %}
+
+    <div class="col-lg-10">
+        <h2>Excluir</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <p>Animais</p>
+            </li>
+            <li class="breadcrumb-item">
+                <strong>Excluir</strong>
+            </li>
+        </ol>
+    </div>
+
+{% endblock %}
+
 {% block content %}
 
     <form action="{% url confirme animal_id %}" method="POST">

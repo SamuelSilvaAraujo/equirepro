@@ -32,7 +32,7 @@ urlpatterns = [
         path('cadastro/', ClientCreateView.as_view(), name="client_create"),
         path('editar/<int:pk>/', ClientUpdateView.as_view(), name="client_update"),
         path('exluir/<int:pk>/', ClientDeleteView.as_view(), name="client_delete"),
-        path('modal/novo/', ClientCreateModalView.as_view(), name="client_modal_create"),
+        path('cadastro/modal/', ClientCreateModalView.as_view(), name="client_create_modal"),
     ])),
     path('haras/', include([
         path('', HarasListView.as_view(), name="haras_list"),

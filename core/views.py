@@ -47,7 +47,7 @@ class GaranhaoCreateView(CreateView):
         context = super(GaranhaoCreateView, self).get_context_data(**kwargs)
         context["garanhoes_page"] = "active"
         context["cancel"] = "garanhao_list"
-        context["title"] = "Novo Garanhão"
+        context["title"] = "Cadastrar Garanhão"
         return context
 
 class GaranhaoUpdateView(UpdateView):
@@ -105,7 +105,7 @@ class DoadoraCreateView(CreateView):
         context = super(DoadoraCreateView, self).get_context_data(**kwargs)
         context["doadoras_page"] = "active"
         context["cancel"] = "doadora_list"
-        context["title"] = "Nova Doadora"
+        context["title"] = "Cadastrar Doadora"
         return context
 
 class DoadoraUpdateView(UpdateView):
@@ -196,7 +196,7 @@ class ReceptoraCreateView(CreateView):
         context = super(ReceptoraCreateView, self).get_context_data(**kwargs)
         context["receptoras_page"] = "active"
         context["cancel"] = "receptora_list"
-        context["title"] = "Nova receptora"
+        context["title"] = "Cadastrar receptora"
         return context
 
 class ReceptoraUpdateView(UpdateView):
@@ -236,7 +236,7 @@ class ReceptoraCicloEstralView(ListView):
         context = super(ReceptoraCicloEstralView, self).get_context_data(**kwargs)
         context["egua_obj"] = Animal.objects.get(pk=self.kwargs["pk"])
         context["receptoras_page"] = "active"
-        context["create_page"] = "receptora_ciclo_estral_create"
+        context["ciclo_estral_create"] = "receptora_ciclo_estral_create"
         context["title"] = "Receptora"
         return context
 

@@ -2,6 +2,21 @@
 
 {% block title %}Exluir Auxiliar{% endblock %}
 
+{% block header %}
+    <div class="col-lg-10">
+        <h2>Excluir Auxiliar</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <p>Auxiliares</p>
+            </li>
+            <li class="breadcrumb-item">
+                <strong>Excluir Auxiliar</strong>
+            </li>
+        </ol>
+    </div>
+
+{% endblock %}
+
 {% block content %}
 
     <form action="{% url 'auxiliar_delete' auxiliar_id %}" method="POST">

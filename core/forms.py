@@ -7,7 +7,7 @@ class AnimalForm(forms.ModelForm):
         model = Animal
         fields = ['name', 'proprietary', 'allocation', 'ancillary', ]
         widgets = {
-            'name': forms.TextInput(attrs={'placeholder':"Nome", 'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'placeholder':"Nome do animal", 'class': 'form-control'}),
             'proprietary': forms.Select(attrs={'class': "selectP form-control"}),
             'allocation': forms.Select(attrs={'class': 'selectL form-control'}),
             'ancillary': forms.Select(attrs={'class': 'selectA form-control'}),
@@ -18,9 +18,9 @@ class ClientForm(forms.ModelForm):
         model = Client
         fields = ['name', 'phone', 'email', ]
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'phone': forms.TextInput(attrs={'class': "form-control", 'data-mask': '(99) 99999-9999'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Fulano Silva'}),
+            'phone': forms.TextInput(attrs={'class': "form-control", 'data-mask': '(99) 99999-9999', 'placeholder': 'Ex.: (99) 99999-9999'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: fulano@gmail.com'}),
         }
 
 class AncillaryForm(forms.ModelForm):
@@ -28,9 +28,9 @@ class AncillaryForm(forms.ModelForm):
         model = Ancillary
         fields = ['name', 'phone', 'haras', ]
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'phone': forms.TextInput(attrs={'class': "form-control", 'data-mask': '(99) 99999-9999'}),
-            'haras': forms.Select(attrs={'class': 'select form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Fulano Silva'}),
+            'phone': forms.TextInput(attrs={'class': "form-control", 'data-mask': '(99) 99999-9999', 'placeholder': 'Ex.: (99) 99999-9999'}),
+            'haras': forms.Select(attrs={'class': 'selectH form-control'}),
         }
 
 class HarasForm(forms.ModelForm):
@@ -38,9 +38,9 @@ class HarasForm(forms.ModelForm):
         model = Haras
         fields = ['name', 'proprietary', 'observation', ]
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Fulano Silva'}),
             'proprietary': forms.Select(attrs={'class': "selectP form-control"}),
-            'observation': forms.Textarea(attrs={'class': 'form-control'}),
+            'observation': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Observações sobre o haras'}),
         }
 
 class ServiceForm(forms.ModelForm):
@@ -57,10 +57,10 @@ class AddresForm(forms.ModelForm):
         model = Address
         fields = '__all__'
         widgets = {
-            'street': forms.TextInput(attrs={'class': 'form-control m-b'}),
-            'number': forms.NumberInput(attrs={'class': 'form-control m-b'}),
-            'district': forms.TextInput(attrs={'class': 'form-control m-b'}),
-            'city': forms.TextInput(attrs={'class': 'form-control m-b'}),
+            'street': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Rua 15 de outubro'}),
+            'number': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: N° 232'}),
+            'district': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Centro'}),
+            'city': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Arapiraca'}),
             'state': forms.Select(attrs={'class': 'selectE form-control'}),
         }
 

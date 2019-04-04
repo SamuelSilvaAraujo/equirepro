@@ -8,6 +8,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>{% block title %}{% endblock %}</title>
 
@@ -32,19 +33,17 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="{% url 'index' %}">
-                            <span class="clear">
-                                <span class="block m-t-xs"> <strong class="font-bold">EquiRepro</strong>
-                             </span>
-                            </span>
+                        <a href="{% url 'index' %}">
+                            <span class="block m-t-xs font-bold">{{ user.name }}</span>
+                            <span class="text-muted text-xs block">EquiRepro</span>
                         </a>
                     </div>
                 </li>
-                {#                <li class="{{ agenda_page }}">#}
-                {#                    <a href="{% url 'agenda' %}"><span class="nav-label">Agenda</span> </a>#}
-                {#                </li>#}
-                <li {% if garanhoes_page or doadoras_page or receptoras_page %}class="active"{% endif %}>
-                    <a href="{% url 'garanhao_list' %}"><span class="nav-label">Animais</span> <span class="fa arrow"></span></a>
+                <li class="{{ garanhoes_page }} or {{ doadoras_page }} or {{ receptoras_page }}">
+                    <a href="{% url 'garanhao_list' %}">
+                        <span class="nav-label">Animais</span>
+                        <span class="fa arrow"></span>
+                    </a>
                     <ul class="nav nav-second-level">
                         <li class="{{ garanhoes_page }}">
                             <a href="{% url 'garanhao_list' %}">Garanhões</a>
@@ -58,19 +57,19 @@
                     </ul>
                 </li>
                 <li class="{{ client_page }}">
-                    <a href="{% url 'client_list' %}"><span class="nav-label">Clientes</span></a>
+                    <a href="{% url 'client_list' %}">
+                        <span class="nav-label">Clientes</span>
+                    </a>
                 </li>
                 <li class="{{ haras_page }}">
-                    <a href="{% url 'haras_list' %}"><span class="nav-label">Haras</span></a>
+                    <a href="{% url 'haras_list' %}">
+                        <span class="nav-label">Haras</span>
+                    </a>
                 </li>
                 <li class="{{ auxiliar_page }}">
-                    <a href="{% url 'auxiliar_list' %}"><span class="nav-label">Auxiliares</span></a>
-                </li>
-                {#                <li class="{{ service_page }}">#}
-                {#                    <a href="{% url 'service_realized_list' %}"><span class="nav-label">Serviços</span></a>#}
-                {#                </li>#}
-                <li>
-                    <a href="{% url 'logout' %}">Sair</a>
+                    <a href="{% url 'auxiliar_list' %}">
+                        <span class="nav-label">Auxiliares</span>
+                    </a>
                 </li>
             </ul>
 
@@ -78,17 +77,24 @@
     </nav>
 
     <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom white-bg">
-            <nav class="navbar navbar-static-top" role="navigation">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
                         <i class="fa fa-bars"></i>
                     </a>
                 </div>
-                <ul class="nav navbar-top-links navbar-left">
-                    <li>{% block header %}{% endblock %}</li>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <i class="fa fa-sign-out"></i>Sair
+                        </a>
+                    </li>
                 </ul>
             </nav>
+        </div>
+        <div class="row  border-bottom white-bg page-heading">
+            {% block header %}{% endblock %}
         </div>
 
         <div class="wrapper wrapper-content animated fadeInRightBig">
@@ -107,9 +113,10 @@
 
 <!-- Mainly scripts -->
 <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
-<script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.js' %}"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="{% static 'js/inspinia.js' %}"></script>
@@ -117,7 +124,6 @@
 
 <!-- jQuery UI  -->
 <script src="{% static 'js/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
-
 <script src="{% static 'js/plugins/jasny/jasny-bootstrap.min.js' %}"></script>
 
 {% block script %}{% endblock %}

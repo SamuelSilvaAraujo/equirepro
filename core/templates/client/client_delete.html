@@ -2,6 +2,20 @@
 
 {% block title %}Excluir Cliente{% endblock %}
 
+{% block header %}
+    <div class="col-lg-10">
+        <h2>Excluir Cliente</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <p>Clientes</p>
+            </li>
+            <li class="breadcrumb-item">
+                <strong>Excluir Cliente</strong>
+            </li>
+        </ol>
+    </div>
+{% endblock %}
+
 {% block content %}
 
     <form action="{% url 'client_delete' client_id %}" method="POST">

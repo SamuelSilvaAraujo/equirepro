@@ -10,12 +10,17 @@
     <form class="m-t" role="form" method="post" action="">
         {% csrf_token %}
 
-        {% for field in form  %}
-            <div class="form-group">
-                {{ field }}
-                {{ field.errors }}
-            </div>
+        {% for erro in form.non_field_errors %}
+           <p class="text-danger"> {{ erro }}</p>
         {% endfor %}
+
+        <div class="form-group">
+            {{ form.username }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password }}
+        </div>
 
         <button type="submit" class="btn btn-primary block full-width m-b">Entrar</button>
 
