@@ -24,8 +24,10 @@
                 <div class="ibox">
                     <div class="ibox-title">
                         <h5>Haras</h5>
-                        <div class="ibox-tools">
-                            <a href="{% url 'haras_create' %}" class="btn btn-info btn-xs">+ Novo haras</a>
+                        <div class="pull-right">
+                            <a href="{% url 'haras_create' %}" class="btn btn-primary btn-outline btn-xs">
+                                <i class="fa fa-plus"></i> Novo haras
+                            </a>
                         </div>
                     </div>
 
@@ -57,10 +59,12 @@
                                     <td>{{ haras.address.city }}</td>
                                     <td>{{ haras.address.state }}</td>
                                     <td class="text-right">
-                                        <div class="btn-group">
-                                            <a href="{% url 'haras_update' haras.id %}" class="btn-white btn btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                                            <a href="{% url 'haras_delete' haras.id %}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Excluir</a>
-                                        </div>
+                                        <a href="{% url 'haras_update' haras.id %}" title="Editar" class="btn btn-warning btn-outline btn-bitbucket btn-xs">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a href="{% url 'haras_delete' haras.id %}" title="Excluir" class="btn btn-danger btn-outline btn-bitbucket btn-xs">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
 

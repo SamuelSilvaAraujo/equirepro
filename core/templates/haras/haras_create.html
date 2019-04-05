@@ -49,6 +49,8 @@
                             </div>
                         </div>
 
+                        <div class="hr-line-dashed"></div>
+
                         <div class="form-group row">
                             <h3 class="control-label col-sm-2">Endereço</h3>
                         </div>
@@ -85,6 +87,8 @@
                             </div>
                         </div>
 
+                        <div class="hr-line-dashed"></div>
+
                         <div class="form-group row">
                             <label class="col-sm-2 control-label">{{ form.observation.label }}</label>
                             <div class="col-sm-10">
@@ -117,7 +121,10 @@
     <script>
         $(document).ready(function() {
 
-            $(".selectP").select2();
+            $(".selectP").select2()
+                .on('select2:open', () => {
+                    $(".select2-results:not(:has(a))").append('<a href="#" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#ModalID">Cadastrar Proprietário</a>');
+                });
 
             $(".selectE").select2();
         });

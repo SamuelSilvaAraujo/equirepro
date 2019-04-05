@@ -145,7 +145,7 @@ class DoadoraCicloEstralView(ListView):
         context = super(DoadoraCicloEstralView, self).get_context_data(**kwargs)
         context["egua_obj"] = Animal.objects.get(pk=self.kwargs["pk"])
         context["doadoras_page"] = "active"
-        context["create_page"] = "doadora_ciclo_estral_create"
+        context["ciclo_estral_create"] = "doadora_ciclo_estral_create"
         context["title"] = "Doadora"
         return context
 

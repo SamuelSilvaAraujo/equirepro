@@ -24,8 +24,10 @@
                 <div class="ibox">
                     <div class="ibox-title">
                         <h5>Clientes</h5>
-                        <div class="ibox-tools">
-                            <a href="{% url 'client_create' %}" class="btn btn-info btn-xs">+ Novo Cliente</a>
+                        <div class="pull-right">
+                            <a href="{% url 'client_create' %}" class="btn btn-primary btn-outline btn-xs">
+                                <i class="fa fa-plus"></i> Novo Cliente
+                            </a>
                         </div>
                     </div>
 
@@ -53,10 +55,12 @@
                                     <td>{{ client.email }}</td>
                                     <td>{{ client.phone }}</td>
                                     <td class="text-right">
-                                        <div class="btn-group">
-                                            <a href="{% url 'client_update' client.id %}" class="btn-white btn btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                                            <a href="{% url 'client_delete' client.id %}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Excluir</a>
-                                        </div>
+                                        <a href="{% url 'client_update' client.id %}" title="Editar" class="btn btn-warning btn-outline btn-bitbucket btn-xs">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a href="{% url 'client_delete' client.id %}" title="Excluir" class="btn btn-danger btn-outline btn-bitbucket btn-xs">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
 

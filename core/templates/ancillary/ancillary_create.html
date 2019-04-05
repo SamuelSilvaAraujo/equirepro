@@ -69,6 +69,9 @@
     <script>
         $(document).ready(function() {
             $(".selectH").select2()
+                .on('select2:open', () => {
+                    $(".select2-results:not(:has(a))").append('<a href="#" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#ModalID">Cadastrar Haras</a>');
+                });
         });
 
     </script>

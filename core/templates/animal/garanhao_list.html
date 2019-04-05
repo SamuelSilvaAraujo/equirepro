@@ -34,8 +34,10 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>Garanhões</h5>
-                        <div class="ibox-tools">
-                            <a href="{% url 'garanhao_create' %}" class="btn btn-info btn-xs">+ Novo Garanhão</a>
+                        <div class="pull-right">
+                            <a href="{% url 'garanhao_create' %}" class="btn btn-primary btn-outline btn-xs">
+                                <i class="fa fa-plus"></i> Novo Garanhão
+                            </a>
                         </div>
                     </div>
 
@@ -51,7 +53,6 @@
                                 <th data-hide="phone,tablet">Locação</th>
                                 <th data-hide="phone,tablet">Auxiliar</th>
                                 <th class="text-right" data-sort-ignore="true"></th>
-                                <th class="text-right" data-hide="phone,tablet" data-sort-ignore="true"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -64,15 +65,15 @@
                                     <td>{{ garanhao.allocation }}</td>
                                     <td>{{ garanhao.ancillary }}</td>
                                     <td class="text-right">
-                                        <div class="btn-group">
-                                            <a href="https://web.whatsapp.com/send?phone=+55{{ garanhao.ancillary.phone|remove_mask }}" target="_blank" class="btn btn-xs btn-primary"><i class="fa fa-whatsapp"></i> Mensagem</a>
-                                        </div>
-                                    </td>
-                                    <td class="text-right">
-                                        <div class="btn-group">
-                                            <a href="{% url 'garanhao_update' garanhao.id %}" class="btn btn-xs btn-white"><i class="fa fa-edit"></i> Editar</a>
-                                            <a href="{% url 'garanhao_delete' garanhao.id %}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Excluir</a>
-                                        </div>
+                                        <a href="https://web.whatsapp.com/send?phone=+55{{ garanhao.ancillary.phone|remove_mask }}" target="_blank" title="Falar com auxiliar" class="btn btn-primary btn-outline btn-bitbucket btn-xs">
+                                            <i class="fa fa-whatsapp"></i>
+                                        </a>
+                                        <a href="{% url 'garanhao_update' garanhao.id %}" title="Editar" class="btn btn-warning btn-outline btn-bitbucket btn-xs">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a href="{% url 'garanhao_delete' garanhao.id %}" title="Excluir" class="btn btn-danger btn-outline btn-bitbucket btn-xs">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
 
