@@ -48,6 +48,7 @@ class GaranhaoCreateView(CreateView):
         context["garanhoes_page"] = "active"
         context["cancel"] = "garanhao_list"
         context["title"] = "Cadastrar Garanhão"
+        context["client_form"] = ClientForm
         return context
 
 class GaranhaoUpdateView(UpdateView):
@@ -313,6 +314,9 @@ class ClientCreateModalView(CreateView):
     model = Client
     template_name = 'client/client_create_modal.html'
     form_class = ClientForm
+
+    def get_success_url(self):
+        pass
 
     def form_valid(self, form):
         obj = form.save(commit=False)

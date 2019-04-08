@@ -1,35 +1,35 @@
-<div class="modal-header">
-    <h4 class="modal-title">Novo Cliente</h4>
-</div>
+<div class="modal inmodal" id="clienteModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <h4 class="modal-title">Cadastrar Cliente</h4>
+            </div>
+            <form method="post" class="form-horizontal" action="{% url 'client_create_modal' %}">
+                {% csrf_token %}
+                <div class="modal-body">
 
-<div class="modal-body">
-    <form method="post" class="form-horizontal" action="{% url 'client_modal_create' %}">
-        {% csrf_token %}
 
-        {% for field in form %}
+                    {% for field in form %}
 
-            <div class="form-group row">
-                <label class="col-sm-2 control-label">{{ field.label }}</label>
-                <div class="col-sm-10">
-                    {{ field }}
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">{{ field.label }}</label>
+                            <div class="col-sm-10">
+                                {{ field }}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
                 </div>
-            </div>
-
-        {% endfor %}
-
-        <div class="form-group row">
-            <div class="col-sm-4 col-sm-offset-2">
-                <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>
-                <button class="btn btn-primary" type="submit">Salvar</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
         </div>
-
-    </form>
-
+    </div>
 </div>
 
-{#<div class="modal-footer">#}
-{#    <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>#}
-{#    <button type="submit" class="btn btn-primary">Salvar</button>#}
-{#</div>#}
+
+
 

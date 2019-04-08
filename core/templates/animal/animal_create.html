@@ -62,12 +62,7 @@
         </div>
     </div>
 
-    <div class="modal inmodal fade" id="ModalID" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content animated bounceInRight">
-            </div>
-        </div>
-    </div>
+    {% include 'client/client_create_modal.html' with client_create_modal_id="clienteModal" client_create_modal_action="/cliente/cadastro/modal/" form=client_form %}
 
 {% endblock %}
 
@@ -80,7 +75,7 @@
 
             $(".selectP").select2()
                 .on('select2:open', () => {
-                    $(".select2-results:not(:has(a))").append('<a href="{% url 'client_create_modal' %}" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#ModalID">Cadastrar Proprietário</a>');
+                    $(".select2-results:not(:has(button))").append('<button type="button" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#clienteModal">Cadastrar Proprietário</button>');
                 });
 
             $(".selectL").select2()
