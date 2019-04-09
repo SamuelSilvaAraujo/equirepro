@@ -62,7 +62,14 @@
         </div>
     </div>
 
-    {% include 'client/client_create_modal.html' with client_create_modal_id="clienteModal" client_create_modal_action="/cliente/cadastro/modal/" form=client_form %}
+    {#    {% include 'client/client_create_modal.html' with client_create_modal_id="clienteModal" client_create_modal_action="/cliente/cadastro/modal/" form=client_form %}#}
+
+    <div class="modal inmodal fade" id="clienteModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content animated bounceInRight"></div>
+        </div>
+    </div>
+
 
 {% endblock %}
 
@@ -75,7 +82,8 @@
 
             $(".selectP").select2()
                 .on('select2:open', () => {
-                    $(".select2-results:not(:has(button))").append('<button type="button" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#clienteModal">Cadastrar Proprietário</button>');
+                    $(".select2-results:not(:has(a))")
+                        .append('<a href="{% url 'client_create_modal' %}" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#clienteModal" data-tooltip>Cadastrar Proprietário</a>');
                 });
 
             $(".selectL").select2()
@@ -87,6 +95,7 @@
                 .on('select2:open', () => {
                     $(".select2-results:not(:has(a))").append('<a href="#" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#ModalID">Cadastrar Auxiliar</a>');
                 });
+
         });
 
     </script>
