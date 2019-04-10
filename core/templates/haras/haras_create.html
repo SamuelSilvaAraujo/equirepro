@@ -112,6 +112,12 @@
 
     </div>
 
+    <div class="modal inmodal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content animated bounceInRight"></div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block script %}
@@ -123,10 +129,16 @@
 
             $(".selectP").select2()
                 .on('select2:open', () => {
-                    $(".select2-results:not(:has(a))").append('<a href="#" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#ModalID">Cadastrar Proprietário</a>');
+                    $(".select2-results:not(:has(button))")
+                        .append('<button type="button" data-remote="{% url 'client_create_modal' %}" class="btn btn-block btn-outline btn-default" data-toggle="modal" data-target="#myModal" data-tooltip>Cadastrar Proprietário</button>');
                 });
 
             $(".selectE").select2();
+
+            $('body').on('click', '[data-toggle="modal"]', function(){
+                $($(this).data("target")+' .modal-content').load($(this).data("remote"));
+            });
+
         });
 
     </script>

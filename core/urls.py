@@ -39,12 +39,14 @@ urlpatterns = [
         path('cadastro/', HarasCreateView.as_view(), name="haras_create"),
         path('editar/<int:pk>/', HarasUpdateView.as_view(), name="haras_update"),
         path('excluir/<int:pk>/', HarasDeleteView.as_view(), name="haras_delete"),
+        path('cadastro/modal/', HarasCreateModalView.as_view(), name="haras_create_modal"),
     ])),
     path('auxiliares/', AncillaryListView.as_view(), name="auxiliar_list"),
     path('auxiliar/', include([
         path('cadastro/', AncillaryCreateView.as_view(), name="auxiliar_create"),
         path('editar/<int:pk>/', AncillaryUpdateView.as_view(), name="auxiliar_update"),
         path('excluir/<int:pk>/', AncillaryDeleteView.as_view(), name="auxiliar_delete"),
+        path('cadastro/modal/', AncillaryCreateModalView.as_view(), name="auxiliar_create_modal"),
     ])),
     path('servicos/', ServiceReliazedListView.as_view(), name="service_realized_list"),
     path('servico/', include([

@@ -322,7 +322,7 @@ class ClientCreateModalView(CreateView):
         obj = form.save(commit=False)
         obj.user = self.request.user
         obj.save()
-        return HttpResponseRedirect(reverse_lazy("client_list"))
+        return super().form_valid(form)
 
 #Serviços views
 class ServiceReliazedListView(LoginRequiredMixin, ListView):
@@ -445,6 +445,27 @@ class HarasDeleteView(LoginRequiredMixin, DeleteView):
         context["haras_id"] = self.kwargs["pk"]
         return context
 
+class HarasCreateModalView(CreateView):
+    model = Haras
+    template_name = 'haras/haras_create_modal.html'
+    form_class = HarasForm
+    second_form_class = AddresForm
+
+    def get_success_url(self):
+        return reverse_lazy("haras_list")
+
+    def form_valid(self, form):
+        adress_obj = self.second_form_class(self.request.POST).save()
+        haras_obj = form.save(commit=False)
+        haras_obj.address = adress_obj
+        haras_obj.save()
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(HarasCreateModalView, self).get_context_data(**kwargs)
+        context["address_form"] = AddresForm
+        return context
+
 #Auxiliares views
 class AncillaryListView(LoginRequiredMixin, ListView):
     model = Ancillary
@@ -496,3 +517,17 @@ class AncillaryDeleteView(LoginRequiredMixin, DeleteView):
         context["auxiliar_page"] = "active"
         context["auxiliar_id"] = self.kwargs["pk"]
         return context
+
+class AncillaryCreateModalView(CreateView):
+    model = Ancillary
+    template_name = 'ancillary/ancillary_create_modal.html'
+    form_class = AncillaryForm
+
+    def get_success_url(self):
+        pass
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+        return HttpResponseRedirect(reverse_lazy("auxiliar_list"))

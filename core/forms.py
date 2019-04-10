@@ -38,7 +38,7 @@ class HarasForm(forms.ModelForm):
         model = Haras
         fields = ['name', 'proprietary', 'observation', ]
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Fulano Silva'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: Haras Esperança'}),
             'proprietary': forms.Select(attrs={'class': "selectP form-control"}),
             'observation': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Observações sobre o haras'}),
         }

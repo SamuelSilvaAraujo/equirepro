@@ -1,0 +1,74 @@
+<div class="modal-header">
+    <h4 class="modal-title">Cadastrar Haras</h4>
+</div>
+<form method="post" class="form-horizontal" action="{% url 'client_create_modal' %}">
+    {% csrf_token %}
+    <div class="modal-body">
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2">{{ form.name.label }}</label>
+            <div class="col-sm-10">
+                {{ form.name }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2">{{ form.proprietary.label }}</label>
+            <div class="col-sm-10">
+                {{ form.proprietary }}
+            </div>
+        </div>
+
+        <div class="hr-line-dashed"></div>
+
+        <div class="form-group row">
+            <h3 class="control-label col-sm-2">Endereço</h3>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2">{{ address_form.street.label }}</label>
+            <div class="col-sm-4">
+                {{ address_form.street }}
+            </div>
+
+            <label class="control-label col-sm-2">{{ address_form.number.label }}</label>
+
+            <div class="col-sm-4">
+                {{ address_form.number }}
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2">{{ address_form.district.label }}</label>
+            <div class="col-sm-10">
+                {{ address_form.district }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2">{{ address_form.city.label }}</label>
+            <div class="col-sm-4">
+                {{ address_form.city }}
+            </div>
+            <label class="control-label col-sm-2">{{ address_form.state.label }}</label>
+            <div class="col-sm-4">
+                {{ address_form.state }}
+            </div>
+        </div>
+
+        <div class="hr-line-dashed"></div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 control-label">{{ form.observation.label }}</label>
+            <div class="col-sm-10">
+                {{ form.observation }}
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+</form>
