@@ -326,7 +326,7 @@ class ClientCreateModalView(CreateView):
 
 #Serviços views
 class ServiceReliazedListView(LoginRequiredMixin, ListView):
-    template_name = 'service/service_realized_list.html'
+    template_name = 'service/order_service_list.html'
     model = ServiceRealized
 
     def get_queryset(self):
@@ -340,7 +340,7 @@ class ServiceReliazedListView(LoginRequiredMixin, ListView):
 
 class ServiceRealizedCreateView(LoginRequiredMixin, CreateView):
     model = ServiceRealized
-    template_name = 'service/service_realized_create.html'
+    template_name = 'service/order_service_create.html'
     form_class = ServiceRealizedForm
     second_form_class = ServiceRealizedLineFormset
     success_url = reverse_lazy("service_realized_list")

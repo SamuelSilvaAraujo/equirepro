@@ -48,9 +48,9 @@ urlpatterns = [
         path('excluir/<int:pk>/', AncillaryDeleteView.as_view(), name="auxiliar_delete"),
         path('cadastro/modal/', AncillaryCreateModalView.as_view(), name="auxiliar_create_modal"),
     ])),
-    path('servicos/', ServiceReliazedListView.as_view(), name="service_realized_list"),
+    path('servicos/', ServiceReliazedListView.as_view(), name="order_service_list"),
     path('servico/', include([
-        path('cadastro/', ServiceRealizedCreateView.as_view(), name="service_realized_create"),
+        path('nova/ordem/', ServiceRealizedCreateView.as_view(), name="order_service_create"),
         path('modal/create/', ServiceModalCreateView.as_view(), name="service_create"),
     ])),
 ]
